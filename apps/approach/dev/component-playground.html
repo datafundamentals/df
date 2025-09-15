@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Component Playground - RAG Components Testing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+
+  <!-- Material Design 3 Theming -->
+  <style>
+    /* Material Design 3 Color Tokens */
+    :root {
+      --md-sys-color-primary: #6750a4;
+      --md-sys-color-on-primary: #ffffff;
+      --md-sys-color-primary-container: #eaddff;
+      --md-sys-color-on-primary-container: #21005d;
+      --md-sys-color-secondary: #625b71;
+      --md-sys-color-on-secondary: #ffffff;
+      --md-sys-color-secondary-container: #e8def8;
+      --md-sys-color-on-secondary-container: #1d192b;
+      --md-sys-color-tertiary: #7d5260;
+      --md-sys-color-on-tertiary: #ffffff;
+      --md-sys-color-tertiary-container: #ffd8e4;
+      --md-sys-color-on-tertiary-container: #31111d;
+      --md-sys-color-error: #ba1a1a;
+      --md-sys-color-on-error: #ffffff;
+      --md-sys-color-error-container: #ffdad6;
+      --md-sys-color-on-error-container: #410002;
+      --md-sys-color-background: #fffbfe;
+      --md-sys-color-on-background: #1c1b1f;
+      --md-sys-color-surface: #fffbfe;
+      --md-sys-color-on-surface: #1c1b1f;
+      --md-sys-color-surface-variant: #e7e0ec;
+      --md-sys-color-on-surface-variant: #49454f;
+      --md-sys-color-outline: #79747e;
+      --md-sys-color-outline-variant: #cac4d0;
+      --md-sys-color-shadow: #000000;
+      --md-sys-color-scrim: #000000;
+      --md-sys-color-surface-tint: #6750a4;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: var(--md-sys-color-background);
+      color: var(--md-sys-color-on-background);
+      line-height: 1.6;
+    }
+
+    .playground-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .playground-header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--md-sys-color-outline-variant);
+    }
+
+    .playground-header h1 {
+      color: var(--md-sys-color-primary);
+      margin-bottom: 8px;
+    }
+
+    .playground-header p {
+      color: var(--md-sys-color-on-surface-variant);
+      font-size: 16px;
+    }
+
+    .test-section {
+      margin-bottom: 48px;
+      padding: 24px;
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: 16px;
+      background-color: var(--md-sys-color-surface);
+    }
+
+    .test-section h2 {
+      color: var(--md-sys-color-on-surface);
+      margin-top: 0;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .test-section .description {
+      color: var(--md-sys-color-on-surface-variant);
+      font-style: italic;
+      margin-bottom: 20px;
+      padding: 12px;
+      background-color: var(--md-sys-color-primary-container);
+      border-radius: 8px;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--md-sys-color-outline);
+    }
+
+    .status-indicator.success {
+      background-color: var(--md-sys-color-tertiary);
+    }
+
+    .status-indicator.error {
+      background-color: var(--md-sys-color-error);
+    }
+
+    .component-container {
+      border: 1px dashed var(--md-sys-color-outline-variant);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 16px 0;
+      background-color: var(--md-sys-color-surface-variant);
+      min-height: 100px;
+    }
+
+    .event-log {
+      background-color: var(--md-sys-color-secondary-container);
+      border: 1px solid var(--md-sys-color-outline-variant);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 16px;
+      max-height: 200px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .event-log-entry {
+      margin-bottom: 4px;
+      color: var(--md-sys-color-on-secondary-container);
+    }
+
+    .controls {
+      margin-bottom: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: 1px solid var(--md-sys-color-outline);
+      border-radius: 8px;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    button:hover {
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Component-specific styling */
+    rag-app-header {
+      margin-bottom: 16px;
+    }
+
+    .mock-navigation {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .mock-navigation button {
+      font-size: 12px;
+      padding: 4px 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="playground-container">
+    <div class="playground-header">
+      <h1>🧪 Component Playground</h1>
+      <p>Interactive testing environment for extracted RAG components</p>
+      <p><strong>Purpose:</strong> Validate component behavior, event communication, and integration points</p>
+    </div>
+
+    <!-- HIGH RISK: Shared App Header -->
+    <div class="test-section">
+      <h2><span class="status-indicator" id="header-status"></span> Shared App Header</h2>
+      <div class="description">
+        <strong>Risk Level:</strong> HIGH - Used across all 3 pages<br>
+        <strong>Test Goals:</strong> Verify rendering, navigation events, authentication states
+      </div>
+      
+      <div class="controls">
+        <button onclick="toggleHeaderAuth()">Toggle Auth State</button>
+        <button onclick="changeHeaderPage()">Change Active Page</button>
+        <button onclick="clearHeaderLog()">Clear Log</button>
+      </div>
+
+      <div class="component-container" id="header-container">
+        <!-- App header will be inserted here -->
+      </div>
+
+      <div class="event-log" id="header-log">
+        <div class="event-log-entry">Waiting for header component to load...</div>
+      </div>
+    </div>
+
+    <!-- HIGH RISK: Event Communication -->
+    <div class="test-section">
+      <h2><span class="status-indicator" id="events-status"></span> Event Communication</h2>
+      <div class="description">
+        <strong>Risk Level:</strong> HIGH - Critical for parent/child component integration<br>
+        <strong>Test Goals:</strong> Verify custom events bubble correctly, data passes accurately
+      </div>
+      
+      <div class="controls">
+        <button onclick="testQuerySubmit()">Test Query Submit</button>
+        <button onclick="testContextChange()">Test Context Change</button>
+        <button onclick="testDocumentEdit()">Test Document Edit</button>
+        <button onclick="clearEventsLog()">Clear Log</button>
+      </div>
+
+      <div class="component-container" id="events-container">
+        <!-- Event test components will be inserted here -->
+      </div>
+
+      <div class="event-log" id="events-log">
+        <div class="event-log-entry">Ready to test event communication...</div>
+      </div>
+    </div>
+
+    <!-- MEDIUM RISK: Document Components -->
+    <div class="test-section">
+      <h2><span class="status-indicator" id="document-status"></span> Document Components</h2>
+      <div class="description">
+        <strong>Risk Level:</strong> MEDIUM - Core user interaction workflows<br>
+        <strong>Test Goals:</strong> Document list, metadata display, creation workflows
+      </div>
+      
+      <div class="controls">
+        <button onclick="loadMockDocuments()">Load Mock Documents</button>
+        <button onclick="testDocumentSelection()">Test Selection</button>
+        <button onclick="testNewDocumentCreation()">Test Creation</button>
+        <button onclick="clearDocumentLog()">Clear Log</button>
+      </div>
+
+      <div class="component-container" id="document-container">
+        <!-- Document components will be inserted here -->
+      </div>
+
+      <div class="event-log" id="document-log">
+        <div class="event-log-entry">Ready to test document components...</div>
+      </div>
+    </div>
+
+    <!-- LOW RISK: Form & Display Components -->
+    <div class="test-section">
+      <h2><span class="status-indicator" id="forms-status"></span> Form & Display Components</h2>
+      <div class="description">
+        <strong>Risk Level:</strong> LOW - Primarily visual and form handling<br>
+        <strong>Test Goals:</strong> Query form, context slider, relevance groups, metadata display
+      </div>
+      
+      <div class="controls">
+        <button onclick="testQueryForm()">Test Query Form</button>
+        <button onclick="testContextSlider()">Test Context Slider</button>
+        <button onclick="testRelevanceGroups()">Test Relevance Groups</button>
+        <button onclick="clearFormsLog()">Clear Log</button>
+      </div>
+
+      <div class="component-container" id="forms-container">
+        <!-- Form components will be inserted here -->
+      </div>
+
+      <div class="event-log" id="forms-log">
+        <div class="event-log-entry">Ready to test form components...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Component imports -->
+  <script type="module" src="../out-tsc/ui/rag-app-header.js"></script>
+  <script type="module" src="../out-tsc/ui/query-form.js"></script>
+  <script type="module" src="../out-tsc/ui/context-slider.js"></script>
+  <script type="module" src="../out-tsc/ui/document-list.js"></script>
+  <script type="module" src="../out-tsc/ui/document-metadata.js"></script>
+  <script type="module" src="../out-tsc/ui/relevance-group.js"></script>
+  <script type="module" src="../out-tsc/ui/new-document-creator.js"></script>
+
+  <script type="module" src="./fixtures/mock-data.js"></script>
+  <script type="module" src="./scenarios/component-tests.js"></script>
+  
+  <script type="module">
+    console.log('🧪 Component Playground loaded successfully!');
+  </script>
+</body>
+</html>

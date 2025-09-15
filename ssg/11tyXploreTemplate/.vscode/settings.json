@@ -1,0 +1,32 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#dd5780",
+        "activityBar.background": "#dd5780",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#73d945",
+        "activityBarBadge.foreground": "#15202b",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#dd5780",
+        "statusBar.background": "#d52c60",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#dd5780",
+        "statusBarItem.remoteBackground": "#d52c60",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#d52c60",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#d52c6099",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#d52c60",
+    "files.exclude": {
+        "**/node_modules": true,
+        // "_site": true,
+        "package-lock.json": true,
+        ".vscode": true,
+        ".git": true,
+        "*.sh": true,
+        "*.gitignore": true,
+        
+    }
+}

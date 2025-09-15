@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Fragment Chips - Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+        line-height: 1.6;
+      }
+      
+      .test-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+      
+      .demo-section {
+        margin: 20px 0;
+        padding: 16px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fafafa;
+      }
+      
+      .output {
+        margin-top: 16px;
+        padding: 12px;
+        background: #e3f2fd;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 12px;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="test-container">
+      <h1>Prompt Fragment Chips Test</h1>
+      
+      <div class="demo-section">
+        <h3>Basic Component Test</h3>
+        <p>Test the multi-select chip component with sample data:</p>
+        
+        <prompt-modifier-chips id="testChips"></prompt-modifier-chips>
+        
+        <div class="output" id="output">
+          Selected fragments will appear here...
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import '../out-tsc/ui/prompt-modifier-chips.js';
+      
+      // Sample prompt fragments for testing
+      const sampleFragments = [
+        {
+          key: "be-concise",
+          value: "Please provide a concise, direct answer without unnecessary elaboration."
+        },
+        {
+          key: "explain-like-5",
+          value: "Explain this as if I'm 5 years old, using simple language and analogies."
+        },
+        {
+          key: "step-by-step",
+          value: "Break this down into clear, numbered steps."
+        },
+        {
+          key: "pros-cons", 
+          value: "Provide both the advantages and disadvantages in your response."
+        }
+      ];
+
+      const chipsComponent = document.getElementById('testChips');
+      const output = document.getElementById('output');
+      
+      // Set initial available fragments
+      chipsComponent.availableFragments = sampleFragments;
+      
+      // Listen for modifier changes
+      chipsComponent.addEventListener('modifiers-changed', (event) => {
+        const selected = event.detail.selectedModifiers;
+        const assembledPrompt = event.detail.assembledPrompt;
+        
+        output.textContent = 'Selected Fragments:\n' + 
+          selected.map(f => `${f.key}: "${f.value}"`).join('\n\n') +
+          '\n\n=== ASSEMBLED PROMPT ===\n' + assembledPrompt;
+      });
+      
+      // Listen for new fragment creation
+      chipsComponent.addEventListener('fragment-created', (event) => {
+        const newFragment = event.detail.fragment;
+        console.log('New fragment created:', newFragment);
+        // In real app, this would save to Firestore
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+# Seed Prompt Fragments
+# These are loaded into Firestore at app startup
+# Format: key (mnemonic) -> value (full prompt text)
+
+prompt_fragments:
+  - key: "be-concise"
+    value: "Please provide a concise, direct answer without unnecessary elaboration."
+    
+  - key: "explain-like-5"  
+    value: "Explain this as if I'm 5 years old, using simple language and analogies."
+    
+  - key: "step-by-step"
+    value: "Break this down into clear, numbered steps."
+    
+  - key: "pros-cons"
+    value: "Provide both the advantages and disadvantages in your response."
+    
+  - key: "examples"
+    value: "Include specific examples to illustrate your points."
+    
+  - key: "technical-detail"
+    value: "Provide technical details and implementation specifics."
+    
+  - key: "beginner-friendly"
+    value: "Assume no prior knowledge and explain all concepts clearly."
+    
+  - key: "bullet-points"
+    value: "Format your response using bullet points for easy scanning."
+    
+  - key: "code-focused"
+    value: "Focus on code examples and practical implementation."
+    
+  - key: "summary-first"
+    value: "Start with a brief summary, then provide details."

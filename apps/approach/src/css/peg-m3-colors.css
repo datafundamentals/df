@@ -1,0 +1,31 @@
+:root {
+  /* Primary colors */
+  --md-sys-color-primary: #6200ea; /* Example primary color (purple) */
+  --md-sys-color-on-primary: #ffffff; /* Text color on primary */
+
+  /* Secondary colors */
+  --md-sys-color-secondary: #03dac6; /* Example secondary color (teal) */
+  --md-sys-color-on-secondary: #000000;
+
+  /* Surface colors */
+  --md-sys-color-surface: #ffffff; /* Surface (background) color */
+  --md-sys-color-on-surface: #000000; /* Text color on surface */
+
+  /* Surface variant colors */
+  --md-sys-color-surface-variant: #f5f5f5; /* Slightly lighter surface for hover effects */
+  --md-sys-color-on-surface-variant: #000000;
+
+  /* Outline colors */
+  --md-sys-color-outline: #c6c6c6; /* Border and outlines */
+
+  /* Error colors */
+  --md-sys-color-error: #b00020;
+  --md-sys-color-on-error: #ffffff;
+
+  /* Background colors */
+  --md-sys-color-background: #ffffff;
+  --md-sys-color-on-background: #000000;
+
+  /* Customization (optional) */
+  --md-sys-color-hover: rgba(98, 0, 234, 0.1); /* Hover state for primary buttons */
+}
