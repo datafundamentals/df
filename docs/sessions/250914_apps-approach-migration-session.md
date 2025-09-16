@@ -21,10 +21,10 @@ When starting the next session, the Claude agent should:
    - apps/approach contains complete RAG system needing migration
    - Session protocols have been established and tested
 
-## Primary Objective: apps/approach Migration
+## Primary Objective: apps/approach Migration to apps/PREZadmin
 
 ### Goal
-Migrate the RAG system from `apps/approach/` to proper monorepo structure following established protocols.
+Copy and migrate the RAG system from `apps/approach/` to `apps/PREZadmin/` following proper monorepo structure. The original `apps/approach/` directory will remain unchanged as a backup.
 
 ### Key Components to Migrate
 Based on apps/approach directory listing:
@@ -34,10 +34,11 @@ Based on apps/approach directory listing:
 - **Source Code:** Complete web application with backend services
 
 ### Expected Outcomes
-1. **New App Structure:** `apps/rag-system/` (or similar appropriate name)
-2. **Shared Extractions:** Common components moved to `shared/`
-3. **Updated Documentation:** All docs reflect new structure
-4. **Working System:** Migrated application functions identically
+1. **New App Structure:** `apps/PREZadmin/` with proper monorepo organization
+2. **Preserved Backup:** `apps/approach/` remains unchanged as safety backup
+3. **Shared Extractions:** Common components moved to `shared/`
+4. **Updated Documentation:** All docs reflect new structure
+5. **Working System:** New application functions identically to original
 
 ## Migration Strategy
 
@@ -48,13 +49,14 @@ Based on apps/approach directory listing:
 - Map dependencies and external services
 
 ### Phase 2: Structure Creation
-- Create new app directory with proper structure
+- Create new `apps/PREZadmin/` directory with proper structure
+- Copy from `apps/approach/` (keeping original unchanged)
 - Set up shared/ components as identified
 - Migrate configuration files appropriately
 
 ### Phase 3: Code Migration
-- Move source code with proper imports/exports
-- Update shared component references
+- Copy source code with proper imports/exports
+- Update shared component references in new location
 - Maintain functional equivalence
 
 ### Phase 4: Documentation and Testing
@@ -65,9 +67,26 @@ Based on apps/approach directory listing:
 ## Critical Dependencies
 
 ### External Services (Must Be Available)
-- ChromaDB server (port 8000)
-- Ollama server (port 11434)
-- Firebase/Firestore (configuration in apps/approach)
+- ChromaDB server (port 8000) - via `./runchroma.sh`
+- Ollama server (port 11434) - system service
+- Firebase/Firestore (configuration in apps/approach) - via `./firebasestart.sh`
+
+### Startup Script Requirements
+The original apps/approach required three terminal windows:
+1. **Window 1:** `npm run rag:start` or `./ragstart.sh` - Main RAG server
+2. **Window 2:** `./firebasestart.sh` - Firebase emulators (auth, firestore, functions, storage)
+3. **Window 3:** `./runchroma.sh` - ChromaDB docker container
+
+**Migration Requirement:** These startup scripts must be preserved/recreated in apps/PREZadmin
+
+### Path Updates Required
+**Directory Structure Change:**
+- Original: `apps/approach/` → `../RAG` ✅
+- New: `apps/PREZadmin/` → `../../../RAG` ✅ (adjusted for monorepo nesting)
+
+**Fixed in Migration:**
+- ✅ Updated `.env` file: `DEFAULT_MARKDOWN_SOURCE_DIR=../../../RAG`
+- ✅ Verified path resolves to correct RAG directory with markdown files
 
 ### Current Working Components
 The RAG system in apps/approach includes:

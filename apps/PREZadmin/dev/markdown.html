@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown Editor with CodeMirror</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.13/lib/codemirror.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.13/theme/dracula.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+
+      #editor {
+        border: 1px solid #ccc;
+        height: 300px;
+      }
+
+      #output {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Markdown Editor</h1>
+    <textarea id="editor"></textarea>
+    <button id="renderButton">Render Markdown</button>
+    <div id="output"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.13/lib/codemirror.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.13/mode/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+    <script>
+      // Initialize CodeMirror for Markdown
+      const editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+        mode: 'markdown',
+        theme: 'dracula',
+        lineNumbers: true,
+        lineWrapping: true,
+      });
+
+      // Render Markdown to HTML
+      document.getElementById('renderButton').addEventListener('click', () => {
+        const markdownText = editor.getValue();
+        const htmlContent = marked.parse(markdownText); // Use marked.parse() to render Markdown
+        document.getElementById('output').innerHTML = htmlContent;
+      });
+    </script>
+  </body>
+</html>

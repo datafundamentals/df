@@ -61,7 +61,8 @@
 ## Pre-Exit Protocols (End Every Session)
 
 ### 8. Documentation Updates (MANDATORY)
-- [ ] Update `CLAUDE.md` with current status/priorities
+- [ ] **Update root `CLAUDE.md` with current monorepo status/priorities**
+- [ ] Update app-specific `CLAUDE.md` files if project-specific changes made
 - [ ] Create/update session-specific documentation in `docs/sessions/`
 - [ ] Update `docs/architecture.md` if architectural changes made
 - [ ] Document any new shared resources in `docs/shared-resources.md`
@@ -166,3 +167,14 @@
 - Clean handoffs enable productive follow-up sessions
 
 **Remember:** This checklist serves the dual purpose of maintaining development velocity while building sustainable, organized systems that scale beyond individual sessions.
+
+## Documentation Architecture Notes
+
+**CLAUDE.md Hierarchy:**
+- **Root `/CLAUDE.md`**: Monorepo overview, current state, shared context
+- **App `/apps/{project}/CLAUDE.md`**: Project-specific implementation details
+
+**Shared Documentation:**
+- Conceptual docs (coding standards, testing strategies) belong in `/docs/`
+- Project-specific addendums stay in app directories
+- Avoid duplication between apps - consolidate shared concepts
