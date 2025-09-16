@@ -1,9 +1,10 @@
 # Monorepo Development Context
 
 ## Current State
-**Last Updated:** 2025-09-15 (Migration Session Completed)
+**Last Updated:** 2025-09-16 (Script Rationalization Session Completed)
 **Active Projects:** 1 (PREZadmin)
 **Shared Components:** Established
+**Development Scripts:** Rationalized to `/scripts` directory
 
 ## Project Overview
 
@@ -26,8 +27,14 @@ This monorepo contains multiple applications with shared components and utilitie
 - ChromaDB server (port 8000)
 - Ollama server (port 11434)
 - Firebase/Firestore emulators
+- RAG proxy server (port 5011)
+- Frontend dev server (port 8001)
 
-**Startup:** 3-terminal process (`./runchroma.sh`, `./firebasestart.sh`, `./ragstart.sh`)
+**Startup:** 4-terminal process using rationalized scripts:
+- `./scripts/infrastructure/start-chromadb.sh` (Terminal 2)
+- `./scripts/infrastructure/start-firebase.sh` (Terminal 3)
+- `./scripts/apps/prezadmin/start-prezadmin.sh` (Terminal 1)
+- `./scripts/apps/prezadmin/start-frontend.sh` (Terminal 4)
 
 #### apps/approach/
 **Status:** 🗄️ Backup (Preserved)
@@ -90,6 +97,14 @@ This monorepo contains multiple applications with shared components and utilitie
 
 ## Recent Accomplishments
 
+### Script Rationalization Session (2025-09-16)
+- ✅ Created `/scripts` directory with organized structure
+- ✅ Separated infrastructure vs. app-specific startup scripts
+- ✅ Implemented master development orchestrator (`development.sh`)
+- ✅ Added service status monitoring and setup guidance
+- ✅ Updated all scripts with proper documentation and port information
+- ✅ Maintained compatibility with existing 10-tab terminal workflow
+
 ### Migration Session (2025-09-15)
 - ✅ Successfully migrated apps/approach → apps/PREZadmin
 - ✅ Established shared/ directory with core services
@@ -103,13 +118,16 @@ This monorepo contains multiple applications with shared components and utilitie
 - ✅ Bulletproof .gitignore for node_modules and .env files
 - ✅ Session documentation protocols established
 - ✅ Path fix: `../../../RAG` correctly resolves to markdown source
+- ✅ Rationalized script organization supporting monorepo growth
+- ✅ Infrastructure vs. application script separation
 
 ## Environment Notes
 
 **ChromaDB:** Local vector database for RAG embeddings
 **Ollama:** Local AI models (llama3.1, nomic-embed-text)
 **Firebase:** Emulated services for development
-**Monorepo Structure:** `/df/` contains apps/, shared/, docs/, ssg/
+**Monorepo Structure:** `/df/` contains apps/, shared/, docs/, ssg/, scripts/
+**Development Scripts:** Organized in `/scripts` with infrastructure and app-specific separation
 
 ---
 
