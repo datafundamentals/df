@@ -1,1 +1,0 @@
-npm run build && npm run test && npm run test:playwright:core && npm run test:playwright:components
