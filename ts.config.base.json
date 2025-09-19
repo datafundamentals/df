@@ -6,9 +6,13 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@ui-lit/*": ["packages/ui-lit/src/*"],
-      "@utils": ["packages/utils/src/index.ts"],
-      "@types/*": ["packages/types/src/*"]
+      "@df/ui-lit/*": ["packages/ui-lit/src/*"],
+      "@df/state/*": ["packages/state/src/*"],
+      "@df/state": ["packages/state/src/index.ts"],
+      "@df/utils": ["packages/utils/src/index.ts"],
+      "@df/types/*": ["packages/types/src/*"],
+      "@df/types": ["packages/types/src/index.ts"],
+      "@df/config": ["packages/config/src/index.ts"]
     },
     "lib": ["es2022", "DOM", "DOM.Iterable"],
     "declaration": true,
@@ -30,7 +34,6 @@
         "name": "ts-lit-plugin",
         "strict": true
       }
-    ],
-    "types": ["mocha"]
+    ]
   }
 }

@@ -1,0 +1,12 @@
+{
+  "extends": "../../ts.config.base.json",
+  "compilerOptions": {
+    "target": "es2021",
+    "module": "es2020",
+    "outDir": "dist",
+    "rootDir": "src",
+    "types": ["mocha", "chai"]
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": []
+}
