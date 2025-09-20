@@ -1,4 +1,4 @@
-# Coding Components - an Coding Standards addendum
+# New v Existing Web Components - an Coding Standards addendum
 
 **TL;DR:** When in doubt, make a new UI component, rather than adding a widget inside your existing UI component.
 
