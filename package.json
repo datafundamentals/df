@@ -1,8 +1,13 @@
 {
   "name": "df-monorepo",
   "private": true,
+  "type": "module",
   "packageManager": "pnpm@10.17.0",
-  "workspaces": ["apps/*", "packages/*", "services/*"],
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
@@ -11,11 +16,13 @@
     "clean": "turbo run clean && pnpm -r exec rimraf node_modules dist .turbo"
   },
   "devDependencies": {
-    "turbo": "^2.5.6",
-    "typescript": "^5.9.2",
+    "@eslint/js": "^9.36.0",
     "eslint": "^9.35.0",
     "prettier": "^3.6.2",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "turbo": "^2.5.6",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.0"
   },
   "overrides": {
     "lit": "^3.3.1",

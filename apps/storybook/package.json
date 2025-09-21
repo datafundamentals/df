@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build",
-    "lint": "eslint \"stories/**/*.{ts,tsx}\""
+    "lint": "eslint stories"
   },
   "dependencies": {
     "@df/ui-lit": "workspace:*"

@@ -21,5 +21,6 @@
     "peacock.color": "#1f7ddf",
     "files.exclude": {
       "**/node_modules": true
-    }
+    },
+    "typescript.preferences.useAliasesForRenames": false
 }
