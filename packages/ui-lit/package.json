@@ -7,13 +7,15 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
-    "./my-element": "./dist/my-element.js"
+    "./my-element": "./dist/my-element.js",
+    "./segmented-button": "./dist/segmented-button.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "lint": "eslint src"
   },
   "dependencies": {
+    "@lit-labs/signals": "^0.1.0",
     "lit": "^3.3.1"
   },
   "devDependencies": {

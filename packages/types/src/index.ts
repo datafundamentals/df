@@ -1,2 +1,1 @@
-// Central location for shared TypeScript declarations.
-export {};
+export * from './segmented-button.js';

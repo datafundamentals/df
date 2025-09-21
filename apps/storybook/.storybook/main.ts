@@ -19,6 +19,12 @@ const config: StorybookConfig = {
           '@df/ui-lit': fileURLToPath(
             new URL('../../../packages/ui-lit/src', import.meta.url),
           ),
+          '@df/state': fileURLToPath(
+            new URL('../../../packages/state/src/index.ts', import.meta.url),
+          ),
+          '@df/types': fileURLToPath(
+            new URL('../../../packages/types/src/index.ts', import.meta.url),
+          ),
         },
       },
     }),

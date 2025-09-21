@@ -32,7 +32,7 @@ All dynamic application state that can change over time **must** be managed in s
 ```typescript
 // file: ./src/state/user.state.ts
 
-import { signal } from '@lit-labs/preact-signals';
+import { signal } from '@lit-labs/signals';
 import { userService } from '../services/user-service.ts';
 
 // 1. Define and export the signal as the source of truth.
@@ -66,7 +66,7 @@ This `user-display` component is purely presentational. It only knows how to ren
 // file: ./src/components/user-display.ts
 import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { signal } from '@lit-labs/preact-signals';
+import { signal } from '@lit-labs/signals';
 
 // 1. Import the signal directly.
 import { currentUser } from '../state/user.state.ts';
