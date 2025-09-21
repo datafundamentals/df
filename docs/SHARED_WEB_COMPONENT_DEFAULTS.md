@@ -102,3 +102,131 @@ Use events **only** for communicating **transient user actions** that do not map
 
   * **Notifications:** Notifying a parent that a one-time animation has completed.
   * **Layout Changes:** Requesting a parent container to `close` or `dismiss` the component (e.g., a modal's close button).
+
+-----
+
+## 3\. Technical Implementation Checklist
+
+### 3.1. Component Development Workflow
+
+#### **Pre-Development Setup**
+- [ ] **Study existing component patterns** - Read through a similar component's full implementation (types → state → UI → stories) before starting
+- [ ] **Plan the state shape first** - Define your `Config` interface in types before writing any code
+- [ ] **Identify signal dependencies** - Map out what signals you'll need and how they interact
+
+#### **Package Export Checklist**
+- [ ] **Add to types/src/index.ts** - Export your new types
+- [ ] **Add to state/src/index.ts** - Export your store functions
+- [ ] **Add to ui-lit/src/index.ts** - Export your component
+- [ ] **Add to ui-lit/package.json exports** - Add the new component path
+- [ ] **Build packages in order** - types → state → ui-lit → storybook
+
+### 3.2. Critical Technical Patterns
+
+#### **Property Declaration Pattern**
+Always use `declare` keyword with `@property` decorators to avoid property shadowing.
+
+```typescript
+// ❌ AVOID - causes property shadowing
+@property({type: String}) variant: 'compact' | 'full' = 'full';
+
+// ✅ CORRECT - use declare + constructor
+@property({type: String}) declare variant: 'compact' | 'full';
+constructor() {
+  super();
+  this.variant = 'full';
+}
+```
+
+#### **CSS Custom Properties Pattern**
+Use fallback values in usage, not in definition, to prevent circular references.
+
+```css
+/* ❌ AVOID - circular reference */
+:host {
+  --my-color: var(--my-color, #blue);
+}
+
+/* ✅ CORRECT - use fallbacks in usage */
+.button {
+  background: var(--my-color, #blue);
+}
+```
+
+#### **Signal Architecture Pattern**
+Follow consistent naming and structure for state management.
+
+```typescript
+// Signal naming convention:
+const [featureName]Signal = signal<Type>(defaultValue);
+export const [featureName]State = computed<Config>(() => ({...}));
+
+// Export action functions with clear verbs:
+export function set[FeatureName](...args) { }
+export function reset[FeatureName]() { }
+export function update[FeatureName](...args) { }
+```
+
+#### **Event Design Pattern**
+Follow consistent event naming and payload structure.
+
+```typescript
+// Event naming: df-[component]-[action]
+this.dispatchEvent(
+  new CustomEvent<PayloadType>('df-[component]-[action]', {
+    detail: { /* typed payload */ },
+    bubbles: true,
+    composed: true,
+  })
+);
+```
+
+### 3.3. Testing and Debugging
+
+#### **Build Order Dependencies**
+Remember: types → state → ui-lit → storybook → apps
+
+#### **Common Issue Resolution**
+- [ ] **Empty component?** → Check property shadowing (use `declare`)
+- [ ] **No styling?** → Check CSS custom property circular references
+- [ ] **Build fails?** → Check package build order (types first)
+- [ ] **Types not found?** → Rebuild types package, check exports
+
+#### **Development Testing Progression**
+1. **Types compile** - `pnpm --filter @df/types run build`
+2. **State compiles** - `pnpm --filter @df/state run build`
+3. **Component compiles** - `pnpm --filter @df/ui-lit run build`
+4. **Stories load** - `pnpm --filter @df/storybook run dev`
+5. **Linting passes** - `pnpm --filter @df/ui-lit run lint`
+6. **Full build** - `pnpm build`
+
+### 3.4. Storybook Story Guidelines
+
+#### **Essential Story Variants**
+- [ ] **Default** - Basic usage example
+- [ ] **Interactive** - Shows event handling with live feedback
+- [ ] **Variants** - All visual/behavioral variants (compact, disabled, etc.)
+- [ ] **Edge cases** - Error states, empty states, loading states
+
+#### **Story Documentation Pattern**
+```typescript
+const meta: Meta = {
+  parameters: {
+    docs: {
+      description: {
+        component: `
+Brief description of purpose and key features.
+
+## Events
+- \`component-change\`: When X happens
+- \`component-action\`: When Y happens
+
+## Accessibility
+- ARIA labels for screen readers
+- Keyboard navigation support
+        `,
+      },
+    },
+  },
+};
+```

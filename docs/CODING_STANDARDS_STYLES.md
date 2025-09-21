@@ -14,6 +14,40 @@
 - **Visual Only** - Web Components should primarily focus on rendering UI. Application state that needs to be persisted or shared across different parts of the application must be managed in external src/stores classes. Internal, non-persisted UI state (e.g., animation state, toggling visibility of an element) can be managed within the component itself.
 - **Material Design 3** - All web component coding to follow Material Design 3 coding standards, importing directly when available, implementing internally when not available for import from the Material Design repository.
 
+### Lit Component Implementation Patterns
+
+#### **Property Declaration Pattern**
+When using `@property` decorators, initialize values in constructor, not as class fields, to avoid property shadowing.
+
+```typescript
+// ❌ AVOID - causes property shadowing
+@property({type: String}) variant: 'compact' | 'full' = 'full';
+
+// ✅ CORRECT - use declare + constructor initialization
+@property({type: String}) declare variant: 'compact' | 'full';
+constructor() {
+  super();
+  this.variant = 'full';
+}
+```
+
+#### **Event Naming Convention**
+Events should follow the pattern: `df-[component-name]-[action-type]`
+
+```typescript
+// Examples:
+'df-upload-link-change'
+'df-segmented-button-change'
+'df-modal-close'
+'df-form-submit'
+```
+
+#### **CSS Architecture Guidelines**
+- **Use CSS custom properties** for themability, but with concrete fallbacks
+- **Follow BEM-style naming** for classes (`.component__element--modifier`)
+- **Design mobile-first** then add responsive enhancements
+- **Avoid circular custom property references** - use fallbacks in usage, not definition
+
 
 ## Signals-Based Reactive Architecture
 
