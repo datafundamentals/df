@@ -1,2 +1,1 @@
-// Placeholder exports for shared Lit components.
-export {};
+export * from './my-element.js';

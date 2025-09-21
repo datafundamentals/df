@@ -9,6 +9,7 @@ node_modules/
 **/dist/
 **/out-tsc/
 **/build/
+**/storybook-static/
 dist/
 out-tsc/
 build/

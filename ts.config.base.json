@@ -6,7 +6,6 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
-      "@df/ui-lit/*": ["packages/ui-lit/src/*"],
       "@df/state/*": ["packages/state/src/*"],
       "@df/state": ["packages/state/src/index.ts"],
       "@df/utils": ["packages/utils/src/index.ts"],

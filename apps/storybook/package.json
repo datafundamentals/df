@@ -1,0 +1,24 @@
+{
+  "name": "@df/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build",
+    "lint": "eslint \"stories/**/*.{ts,tsx}\""
+  },
+  "dependencies": {
+    "@df/ui-lit": "workspace:*"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.4.0",
+    "@storybook/addon-interactions": "^8.4.0",
+    "@storybook/test": "^8.4.0",
+    "@storybook/web-components": "^8.4.0",
+    "@storybook/web-components-vite": "^8.4.0",
+    "storybook": "^8.4.0",
+    "typescript": "^5.9.2",
+    "lit": "^3.3.1"
+  }
+}
