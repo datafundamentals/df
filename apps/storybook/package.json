@@ -9,7 +9,8 @@
     "lint": "eslint stories"
   },
   "dependencies": {
-    "@df/ui-lit": "workspace:*"
+    "@df/ui-lit": "workspace:*",
+    "@lit-labs/signals": "^0.1.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.4.0",
