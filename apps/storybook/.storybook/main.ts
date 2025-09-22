@@ -25,6 +25,9 @@ const config: StorybookConfig = {
           '@df/types': fileURLToPath(
             new URL('../../../packages/types/src/index.ts', import.meta.url),
           ),
+          '@df/utils': fileURLToPath(
+            new URL('../../../packages/utils/src/index.ts', import.meta.url),
+          ),
         },
       },
     }),

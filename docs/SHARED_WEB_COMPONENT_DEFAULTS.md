@@ -113,6 +113,7 @@ Use events **only** for communicating **transient user actions** that do not map
 - [ ] **Study existing component patterns** - Read through a similar component's full implementation (types → state → UI → stories) before starting
 - [ ] **Plan the state shape first** - Define your `Config` interface in types before writing any code
 - [ ] **Identify signal dependencies** - Map out what signals you'll need and how they interact
+- [ ] **Verify downstream dependencies** - If a store touches another workspace (e.g., `@df/utils`), add the TS project reference and extend Storybook's Vite aliases before you run builds
 
 #### **Package Export Checklist**
 - [ ] **Add to types/src/index.ts** - Export your new types
@@ -165,6 +166,20 @@ export const [featureName]State = computed<Config>(() => ({...}));
 export function set[FeatureName](...args) { }
 export function reset[FeatureName]() { }
 export function update[FeatureName](...args) { }
+```
+
+#### **Signal Return Type Pattern**
+When exporting a signal or computed instance, prefer `ReturnType<typeof createState>` instead of referencing the `Signal` namespace directly. Bundlers like Vite strip namespace types during build, and this pattern preserves accurate typings while remaining tool-friendly.
+
+```typescript
+function createAvatarState() {
+  return computed<AvatarConfig>(() => ({ /* ... */ }));
+}
+
+export function avatarState(id = 'default'): ReturnType<typeof createAvatarState> {
+  ensureAvatar(id);
+  return ensureAvatarState(id);
+}
 ```
 
 #### **Event Design Pattern**

@@ -9,7 +9,8 @@
     ".": "./dist/index.js",
     "./my-element": "./dist/my-element.js",
     "./segmented-button": "./dist/segmented-button.js",
-    "./upload-link": "./dist/upload-link.js"
+    "./upload-link": "./dist/upload-link.js",
+    "./markdown-codemirror": "./dist/markdown-codemirror.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
