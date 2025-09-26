@@ -1,29 +1,29 @@
 {
-  "name": "df-npm-info-app",
+  "name": "@df/df-npm-info-app",
   "private": true,
-  "version": "2.0.2",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "serve": "wds --watch"
+    "clean": "rimraf dist",
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -p tsconfig.json --watch",
+    "dev": "vite",
+    "serve": "vite"
   },
   "dependencies": {
     "@lit-labs/signals": "^0.1.1",
     "@material/web": "^2.2.0",
-    "@types/mocha": "^10.0.10",
-    "@web/dev-server": "^0.4.6",
-    "@webcomponents/webcomponentsjs": "^2.8.0",
-    "lit": "^3.2.0",
+    "lit": "^3.3.1",
     "signal-polyfill": "^0.2.2",
     "signal-utils": "^0.21.1"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@web/dev-server": "^0.4.6",
-    "@web/dev-server-legacy": "^2.1.1",
     "@web/test-runner": "^0.20.2",
     "@webcomponents/webcomponentsjs": "^2.8.0",
-    "typescript": "^5.7.3"
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.2",
+    "vite": "^5.4.10"
   },
   "customElements": "custom-elements.json"
 }

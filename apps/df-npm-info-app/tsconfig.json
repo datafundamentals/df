@@ -1,36 +1,14 @@
 {
+  "extends": "../../ts.config.base.json",
   "compilerOptions": {
-    "target": "es2021",
-    "module": "esNext",
-    "lib": ["es2021", "DOM", "DOM.Iterable"],
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "inlineSources": true,
-    "outDir": "out-tsc",
-    "rootDir": "./src",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitOverride": true,
+    "target": "ES2021",
+    "outDir": "dist",
+    "rootDir": "src",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "plugins": [
-      {
-        "name": "ts-lit-plugin",
-        "strict": true
-      }
-    ],
-    "types": ["node", "mocha"]
+    "types": ["mocha"],
+    "skipLibCheck": true,
+    "composite": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": []
+  "include": ["src/**/*.ts"]
 }
