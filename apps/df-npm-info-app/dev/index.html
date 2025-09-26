@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RAG Development Tools</title>
+    <script type="module" src="../out-tsc/ui/peg-bundle-admin.js"></script>
+    <script type="module" src="../out-tsc/ui/peg-bundle-electives-admin.js"></script>
+    <script type="module" src="../out-tsc/ui/peg-bundle-elective-menu.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        line-height: 1.6;
+      }
+
+      .card {
+        border: 1px solid #e1e5e9;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        background: #f8f9fa;
+      }
+
+      .card h2 {
+        margin-top: 0;
+        color: #2c3e50;
+      }
+
+      .btn {
+        display: inline-block;
+        background: #007bff;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: background-color 0.2s;
+      }
+
+      .btn:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>RAG Development Tools</h1>
+    <p>Local development tools for the ChromaDB RAG Query System</p>
+
+    <div class="card">
+      <h2>🤖 RAG Query Interface</h2>
+      <p>Interactive interface for storing documents and querying your local RAG system using ChromaDB + Ollama.</p>
+      <p><strong>Features:</strong></p>
+      <ul>
+        <li>Document storage with rich metadata</li>
+        <li>Semantic search and AI-powered responses</li>
+        <li>Ontological relationship support</li>
+        <li>Local ChromaDB + Ollama integration</li>
+      </ul>
+      <a href="rag-query.html" class="btn">Query & Chat</a>
+      <a href="rag-storage.html" class="btn">Document Storage</a>
+      <a href="rag-editor.html" class="btn">Document Editor</a>
+    </div>
+
+    <div class="card">
+      <h2>🧪 Component Testing</h2>
+      <p>Interactive testing environments for validating extracted components and component architecture.</p>
+      <p><strong>Testing Tools:</strong></p>
+      <ul>
+        <li><strong>Quick Component Test</strong> - Minimal test to verify components load and render</li>
+        <li><strong>Component Playground</strong> - Interactive testing with event logging and mock data</li>
+        <li>Risk-based testing approach following established methodology</li>
+      </ul>
+      <a href="quick-component-test.html" class="btn">Quick Test</a>
+      <a href="component-playground-standalone.html" class="btn">Interactive Playground</a>
+      <a href="README-COMPONENT-TESTING.md" class="btn" style="background: #28a745;">Testing Docs</a>
+    </div>
+
+    <div class="card">
+      <h2>📚 Documentation</h2>
+      <p>For setup instructions, architecture details, and API documentation, see the README.md file in the project root.</p>
+    </div>
+    <div class="card">
+      <h2>🛠 Other</h2>
+      <p>These are from a completely separate development chain</p>
+      <p><strong>Included Tools:</strong></p>
+      <ul>
+        <li>
+          <a href="PEG.html">PEG</a>
+        </li>
+        <li>
+          <a href="npmish.html">NPM Info</a>
+        </li>
+        <li>
+          <a href="index.html">home</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+# Monorepo .gitignore
+# Covers all node_modules directories across all projects
+
+# Node.js dependencies
+**/node_modules/
+node_modules/
+OUT_OF_SCOPE/
+
+# Build outputs
+**/dist/
+**/out-tsc/
+**/build/
+**/storybook-static/
+dist/
+out-tsc/
+build/
+
+# Environment files
+**/.env
+**/.env.*
+!**/.env.example
+.env
+.env.*
+!.env.example
+
+# Logs
+**/*.log
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Cache directories
+**/.cache/
+**/.npm/
+**/.eslintcache
+**/.stylelintcache
+**/.parcel-cache
+.turbo/
+.turbo
+.cache/
+.npm/
+
+# IDE files
+**/.vscode/
+**/.idea/
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project-specific ignores
+apps/*/chromadata/
+apps/*/playwright-report/
+apps/*/test-results/
+shared/dist/
+
+# TypeScript
+**/*.tsbuildinfo
+*.tsbuildinfo
+
+# Firebase
+**/.firebase/
+**/firebase-debug.log
+**/firestore-debug.log
+
+# Package manager
+**/package-lock.json.bak
+**/yarn.lock.bak
