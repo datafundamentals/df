@@ -3,6 +3,10 @@
   "compilerOptions": {
     "noEmit": true,
     "paths": {
+      "@df/types": ["../../packages/types/src/index.ts"],
+      "@df/types/*": ["../../packages/types/src/*"],
+      "@df/state": ["../../packages/state/src/index.ts"],
+      "@df/state/*": ["../../packages/state/src/*"],
       "@df/ui-lit": ["../../packages/ui-lit/src/index.ts"],
       "@df/ui-lit/*": ["../../packages/ui-lit/src/*"]
     }

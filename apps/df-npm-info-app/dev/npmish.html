@@ -1,15 +1,25 @@
 <!doctype html>
 <html>
   <head>
-    <script type="module" src="../dist/ui/npm-info.js"></script>
+    <script type="module" src="../src/df-npm-info-app.ts"></script>
     <style>
       :root {
         font-family: 'Arial', sans-serif;
         margin: 8px 32px;
       }
+      
+      body {
+        margin: 0;
+        padding: 16px;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(239, 68, 68, 0.1));
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     </style>
   </head>
   <body>
-    <npm-info></npm-info>
+    <df-npm-info-app></df-npm-info-app>
   </body>
 </html>
