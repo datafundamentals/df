@@ -4,3 +4,4 @@ export * from './upload-link.js';
 export * from './markdown-codemirror.js';
 export * from './df-practice-widget.js';
 export * from './df-npm-info-widget.js';
+export * from './old-awr-sgmtd-button.js';

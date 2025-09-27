@@ -18,7 +18,9 @@
     "./df-practice-widget": "./dist/df-practice-widget.js",
     "./df-practice-widget.js": "./dist/df-practice-widget.js",
     "./df-npm-info-widget": "./dist/df-npm-info-widget.js",
-    "./df-npm-info-widget.js": "./dist/df-npm-info-widget.js"
+    "./df-npm-info-widget.js": "./dist/df-npm-info-widget.js",
+    "./old-awr-sgmtd-button": "./dist/old-awr-sgmtd-button.js",
+    "./old-awr-sgmtd-button.js": "./dist/old-awr-sgmtd-button.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
