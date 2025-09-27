@@ -14,39 +14,45 @@ import type {SegmentedButtonOption} from '@df/types';
 export class DfSegmentedButton extends SignalWatcher(LitElement) {
   static override styles = css`
     :host {
-      display: inline-flex;
-      font-family: var(--df-font-family, 'Roboto', sans-serif);
+      display: block;
+      font-family: 'Roboto', sans-serif;
     }
 
     .group {
-      display: inline-flex;
-      border: 1px solid var(--df-segmented-outline-color, #c6c6c6);
-      border-radius: 9999px;
+      display: flex;
+      border: 1px solid var(--md-sys-color-outline, #c6c6c6);
+      border-radius: 12px;
       overflow: hidden;
-      background: var(--df-segmented-surface-color, #ffffff);
     }
 
     button {
-      border: none;
-      background: transparent;
-      padding: 6px 16px;
-      font: inherit;
+      flex: 1;
+      padding: 2px 8px;
+      text-align: center;
       cursor: pointer;
-      color: var(--df-segmented-text-color, #1f1f1f);
-      transition: background-color 120ms ease, color 120ms ease;
-      display: inline-flex;
+      background-color: var(--md-sys-color-surface, #ffffff);
+      color: var(--md-sys-color-on-surface, #000000);
+      border: none;
+      outline: none;
+      font-size: 14px;
+      line-height: 1;
+      display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 48px;
-    }
-
-    button:not(:last-of-type) {
-      border-right: 1px solid var(--df-segmented-outline-color, #c6c6c6);
+      gap: 4px;
     }
 
     button[aria-pressed='true'] {
-      background: var(--df-segmented-primary-color, #1d4ed8);
-      color: var(--df-segmented-primary-text-color, #ffffff);
+      background-color: var(--md-sys-color-primary, #6200ea);
+      color: var(--md-sys-color-on-primary, #ffffff);
+    }
+
+    button:not([aria-pressed='true']):hover {
+      background-color: var(--md-sys-color-surface-variant, #f5f5f5);
+    }
+
+    button:not(:last-child) {
+      border-right: 1px solid var(--md-sys-color-outline, #c6c6c6);
     }
 
     button:disabled {
