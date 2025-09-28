@@ -1,5 +1,5 @@
 export * from './my-element.js';
-export * from './segmented-button.js';
+export * from './df-segmented-button.js';
 export * from './wrong-upload-link.js';
 export * from './df-upload-link.js';
 export * from './wrong-markdown-codemirror.js';

@@ -4,7 +4,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { fileToUpload, fileUploadProgress, uploadFileTask } from './df-upload-link-store';
 import '@material/web/progress/circular-progress.js';
 import '@material/web/textfield/outlined-text-field.js';
-import './segmented-button';
+import './df-segmented-button';
 import { isLoggedIn } from './df-upload-link-auth';
 
 import { SignalWatcher } from '@lit-labs/signals';
@@ -16,13 +16,26 @@ export class DfUploadLink extends SignalWatcher(LitElement) {
   @property() declare resourcePageType: ResourcePageType;
   @property({ type: String }) declare linkUrl: string;
   @property({ type: Boolean }) declare imageValid: boolean;
-  @state() private showUrlContainer = false;
-  @state() private showUploader = false;
-  @state() private showContent = false;
-  @state() private showLinkInput = false;
-  @state() fileName = 'Select File to Upload';
-  @state() private generatedLink = '';
-  @state() public disabledOptions = ['Add', '0'];
+  @state()
+  declare private showUrlContainer: boolean;
+
+  @state()
+  declare private showUploader: boolean;
+
+  @state()
+  declare private showContent: boolean;
+
+  @state()
+  declare private showLinkInput: boolean;
+
+  @state()
+  declare fileName: string;
+
+  @state()
+  declare private generatedLink: string;
+
+  @state()
+  declare public disabledOptions: string[];
 
   constructor() {
     super();
@@ -30,6 +43,13 @@ export class DfUploadLink extends SignalWatcher(LitElement) {
     this.resourcePageType = 'void';
     this.linkUrl = '';
     this.imageValid = false;
+    this.showUrlContainer = false;
+    this.showUploader = false;
+    this.showContent = false;
+    this.showLinkInput = false;
+    this.fileName = 'Select File to Upload';
+    this.generatedLink = '';
+    this.disabledOptions = ['Add', '0'];
   }
   static override styles = css`
     :host {

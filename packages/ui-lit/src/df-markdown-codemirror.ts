@@ -13,16 +13,24 @@ import { countTokens, parseMarkdown } from './file-processing.js';
 @customElement('df-markdown-codemirror')
 export class DfMarkdownCodeMirror extends LitElement {
   @property({ type: String })
-  markdownContent = '';
+  declare markdownContent: string;
 
   @state()
-  private tokenCount = 0;
+  declare private tokenCount: number;
 
   @state()
-  private lastCalculatedContent = '';
+  declare private lastCalculatedContent: string;
 
   @state()
-  private isContentChanged = false;
+  declare private isContentChanged: boolean;
+
+  constructor() {
+    super();
+    this.markdownContent = '';
+    this.tokenCount = 0;
+    this.lastCalculatedContent = '';
+    this.isContentChanged = false;
+  }
 
   listener = EditorView.updateListener.of((update: ViewUpdate) => {
     if (update.docChanged) {

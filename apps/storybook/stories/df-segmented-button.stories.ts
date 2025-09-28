@@ -1,6 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/web-components';
 import {html} from 'lit';
-import '@df/ui-lit/segmented-button';
+import '@df/ui-lit/df-segmented-button';
 
 interface SegmentedButtonStoryArgs {
   selected: string;
@@ -9,7 +9,7 @@ interface SegmentedButtonStoryArgs {
 }
 
 const meta: Meta<SegmentedButtonStoryArgs> = {
-  title: 'Components/Segmented Button',
+  title: 'Components/df Segmented Button',
   component: 'df-segmented-button',
   parameters: {
     layout: 'centered',

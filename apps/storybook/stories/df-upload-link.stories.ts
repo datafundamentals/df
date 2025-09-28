@@ -13,7 +13,7 @@ interface DfUploadLinkStoryArgs {
 }
 
 const meta: Meta<DfUploadLinkStoryArgs> = {
-  title: 'Components/Df Upload Link',
+  title: 'Components/df Upload Link',
   component: 'df-upload-link',
   parameters: {
     layout: 'centered',
