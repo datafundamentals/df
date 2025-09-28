@@ -9,15 +9,15 @@ import {
 } from '@df/state';
 import type {UploadMode, UploadLinkChangeEvent} from '@df/types';
 
-@customElement('df-upload-link')
-export class DfUploadLink extends SignalWatcher(LitElement) {
+@customElement('wrong-upload-link')
+export class WrongUploadLink extends SignalWatcher(LitElement) {
   @property({type: String}) declare variant: 'compact' | 'full';
   @property({type: String}) declare label: string;
 
   constructor() {
     super();
     this.variant = 'full';
-    this.label = 'Upload Link';
+    this.label = 'Wrong Upload Link';
   }
 
   static override styles = css`
@@ -252,7 +252,7 @@ export class DfUploadLink extends SignalWatcher(LitElement) {
     const state = uploadLinkState.get();
 
     this.dispatchEvent(
-      new CustomEvent('df-upload-link-add', {
+      new CustomEvent('wrong-upload-link-add', {
         detail: {
           mode: state.mode,
           linkUrl: state.linkUrl,
@@ -270,7 +270,7 @@ export class DfUploadLink extends SignalWatcher(LitElement) {
     const state = uploadLinkState.get();
 
     this.dispatchEvent(
-      new CustomEvent<UploadLinkChangeEvent>('df-upload-link-change', {
+      new CustomEvent<UploadLinkChangeEvent>('wrong-upload-link-change', {
         detail: {
           mode: state.mode,
           linkUrl: state.linkUrl,
@@ -392,6 +392,6 @@ export class DfUploadLink extends SignalWatcher(LitElement) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'df-upload-link': DfUploadLink;
+    'wrong-upload-link': WrongUploadLink;
   }
 }

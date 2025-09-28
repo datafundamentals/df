@@ -1,23 +1,25 @@
 import type {Meta, StoryObj} from '@storybook/web-components';
 import {html} from 'lit';
-import '@df/ui-lit/upload-link';
+import '@df/ui-lit/wrong-upload-link';
 import type {UploadLinkChangeEvent} from '@df/types';
 
-interface UploadLinkStoryArgs {
+interface WrongUploadLinkStoryArgs {
   variant: 'compact' | 'full';
   label: string;
   onChange?: (event: UploadLinkChangeEvent) => void;
   onAdd?: (event: UploadLinkChangeEvent) => void;
 }
 
-const meta: Meta<UploadLinkStoryArgs> = {
-  title: 'Components/Upload Link',
-  component: 'df-upload-link',
+const meta: Meta<WrongUploadLinkStoryArgs> = {
+  title: 'Components/Wrong Upload Link',
+  component: 'wrong-upload-link',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component: `
+**DEPRECATED: This is the old upload link component that will be removed in the future.**
+
 A presentation-only component for handling file uploads and URL links.
 Built with Lit and signals following team standards for shareable web components.
 
@@ -30,8 +32,8 @@ Built with Lit and signals following team standards for shareable web components
 - Material Design 3 styling
 
 ## Events
-- \`df-upload-link-change\`: Fired when mode, URL, or validation state changes
-- \`df-upload-link-add\`: Fired when user confirms adding a valid link
+- \`wrong-upload-link-change\`: Fired when mode, URL, or validation state changes
+- \`wrong-upload-link-add\`: Fired when user confirms adding a valid link
 
 ## Accessibility
 - ARIA labels and roles for screen readers
@@ -43,7 +45,7 @@ Built with Lit and signals following team standards for shareable web components
   },
   args: {
     variant: 'full',
-    label: 'Upload Link',
+    label: 'Wrong Upload Link',
   },
   argTypes: {
     variant: {
@@ -63,25 +65,25 @@ Built with Lit and signals following team standards for shareable web components
 
 export default meta;
 
-type Story = StoryObj<UploadLinkStoryArgs>;
+type Story = StoryObj<WrongUploadLinkStoryArgs>;
 
 export const Default: Story = {
   render: (args) => html`
-    <df-upload-link
+    <wrong-upload-link
       .variant=${args.variant}
       .label=${args.label}
-      @df-upload-link-change=${(event: CustomEvent<UploadLinkChangeEvent>) =>
+      @wrong-upload-link-change=${(event: CustomEvent<UploadLinkChangeEvent>) =>
         args.onChange?.(event.detail)}
-      @df-upload-link-add=${(event: CustomEvent<UploadLinkChangeEvent>) =>
+      @wrong-upload-link-add=${(event: CustomEvent<UploadLinkChangeEvent>) =>
         args.onAdd?.(event.detail)}
-    ></df-upload-link>
+    ></wrong-upload-link>
   `,
 };
 
 export const Compact: Story = {
   args: {
     variant: 'compact',
-    label: 'Media',
+    label: 'Wrong Media',
   },
   parameters: {
     docs: {
@@ -94,7 +96,7 @@ export const Compact: Story = {
 
 export const CustomLabel: Story = {
   args: {
-    label: 'Upload Image or Video',
+    label: 'Wrong Upload Image or Video',
   },
   parameters: {
     docs: {
@@ -107,21 +109,21 @@ export const CustomLabel: Story = {
 
 export const WithInitialUrl: Story = {
   render: (args) => html`
-    <df-upload-link
+    <wrong-upload-link
       .variant=${args.variant}
       .label=${args.label}
-      @df-upload-link-change=${(event: CustomEvent<UploadLinkChangeEvent>) =>
+      @wrong-upload-link-change=${(event: CustomEvent<UploadLinkChangeEvent>) =>
         args.onChange?.(event.detail)}
-      @df-upload-link-add=${(event: CustomEvent<UploadLinkChangeEvent>) =>
+      @wrong-upload-link-add=${(event: CustomEvent<UploadLinkChangeEvent>) =>
         args.onAdd?.(event.detail)}
-    ></df-upload-link>
+    ></wrong-upload-link>
     <script>
       // Simulate initial URL state
       setTimeout(() => {
-        const component = document.querySelector('df-upload-link');
+        const component = document.querySelector('wrong-upload-link');
         if (component) {
           // Trigger URL mode and set a sample URL
-          component.dispatchEvent(new CustomEvent('df-upload-link-mode', {
+          component.dispatchEvent(new CustomEvent('wrong-upload-link-mode', {
             detail: { mode: 'url' }
           }));
         }
@@ -143,10 +145,10 @@ export const InteractionExample: Story = {
 
     return html`
       <div style="display: flex; flex-direction: column; gap: 20px; max-width: 500px;">
-        <df-upload-link
+        <wrong-upload-link
           .variant=${args.variant}
           .label=${args.label}
-          @df-upload-link-change=${(event: CustomEvent<UploadLinkChangeEvent>) => {
+          @wrong-upload-link-change=${(event: CustomEvent<UploadLinkChangeEvent>) => {
             lastEvent = event.detail;
             args.onChange?.(event.detail);
 
@@ -161,7 +163,7 @@ export const InteractionExample: Story = {
               `;
             }
           }}
-          @df-upload-link-add=${(event: CustomEvent<UploadLinkChangeEvent>) => {
+          @wrong-upload-link-add=${(event: CustomEvent<UploadLinkChangeEvent>) => {
             args.onAdd?.(event.detail);
 
             // Update the add display
@@ -175,7 +177,7 @@ export const InteractionExample: Story = {
               `;
             }
           }}
-        ></df-upload-link>
+        ></wrong-upload-link>
 
         <div style="padding: 12px; border: 1px solid #ccc; border-radius: 8px; background: #f9f9f9;">
           <div id="event-info" style="font-family: monospace; font-size: 12px;">
