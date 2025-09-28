@@ -1,18 +1,18 @@
-export type MarkdownCodemirrorTheme = 'light' | 'dark';
+export type WrongMarkdownCodemirrorTheme = 'light' | 'dark';
 
-export interface MarkdownCodemirrorSelection {
+export interface WrongMarkdownCodemirrorSelection {
   start: number;
   end: number;
 }
 
-export interface MarkdownCodemirrorConfig {
+export interface WrongMarkdownCodemirrorConfig {
   id: string;
   value: string;
   placeholder: string;
-  theme: MarkdownCodemirrorTheme;
+  theme: WrongMarkdownCodemirrorTheme;
   readOnly: boolean;
   hasFocus: boolean;
-  selection: MarkdownCodemirrorSelection;
+  selection: WrongMarkdownCodemirrorSelection;
   lineCount: number;
   charCount: number;
   wordCount: number;
@@ -20,23 +20,23 @@ export interface MarkdownCodemirrorConfig {
   showPreview: boolean;
 }
 
-export interface MarkdownCodemirrorInitOptions {
+export interface WrongMarkdownCodemirrorInitOptions {
   id: string;
   initialValue?: string;
   placeholder?: string;
-  theme?: MarkdownCodemirrorTheme;
+  theme?: WrongMarkdownCodemirrorTheme;
   readOnly?: boolean;
   showPreview?: boolean;
 }
 
-export interface MarkdownCodemirrorChangeDetail {
+export interface WrongMarkdownCodemirrorChangeDetail {
   id: string;
   value: string;
   charCount: number;
   wordCount: number;
 }
 
-export interface MarkdownCodemirrorFocusDetail {
+export interface WrongMarkdownCodemirrorFocusDetail {
   id: string;
   hasFocus: boolean;
 }

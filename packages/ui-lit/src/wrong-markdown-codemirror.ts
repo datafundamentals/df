@@ -14,19 +14,19 @@ import {
   setMarkdownValue,
 } from '@df/state';
 import type {
-  MarkdownCodemirrorChangeDetail,
-  MarkdownCodemirrorConfig,
-  MarkdownCodemirrorFocusDetail,
-  MarkdownCodemirrorTheme,
+  WrongMarkdownCodemirrorChangeDetail,
+  WrongMarkdownCodemirrorConfig,
+  WrongMarkdownCodemirrorFocusDetail,
+  WrongMarkdownCodemirrorTheme,
 } from '@df/types';
 
 const DEFAULT_LABEL = 'Markdown';
 
-@customElement('df-markdown-codemirror')
-export class DfMarkdownCodemirror extends SignalWatcher(LitElement) {
+@customElement('wrong-markdown-codemirror')
+export class WrongMarkdownCodemirror extends SignalWatcher(LitElement) {
   @property({type: String}) declare editorId: string;
   @property({type: String}) declare placeholder: string;
-  @property({type: String}) declare theme: MarkdownCodemirrorTheme;
+  @property({type: String}) declare theme: WrongMarkdownCodemirrorTheme;
   @property({type: Boolean}) declare readOnly: boolean;
   @property({type: Boolean}) declare showPreview: boolean;
   @property({type: String}) declare initialValue: string;
@@ -491,7 +491,7 @@ export class DfMarkdownCodemirror extends SignalWatcher(LitElement) {
     this.gutterElement.scrollTop = this.textareaElement.scrollTop;
   }
 
-  private composeWrapperClass(state: MarkdownCodemirrorConfig): string {
+  private composeWrapperClass(state: WrongMarkdownCodemirrorConfig): string {
     const classes = ['editor'];
     if (state.theme === 'dark') {
       classes.push('editor--dark');
@@ -505,7 +505,7 @@ export class DfMarkdownCodemirror extends SignalWatcher(LitElement) {
     return classes.join(' ');
   }
 
-  private composeBodyClass(state: MarkdownCodemirrorConfig): string {
+  private composeBodyClass(state: WrongMarkdownCodemirrorConfig): string {
     const classes = ['editor__body'];
     if (!state.showPreview) {
       classes.push('editor__body--single');
@@ -515,14 +515,14 @@ export class DfMarkdownCodemirror extends SignalWatcher(LitElement) {
 
   private dispatchChangeEvent() {
     const state = markdownCodemirrorState(this.editorId).get();
-    const detail: MarkdownCodemirrorChangeDetail = {
+    const detail: WrongMarkdownCodemirrorChangeDetail = {
       id: state.id,
       value: state.value,
       charCount: state.charCount,
       wordCount: state.wordCount,
     };
     this.dispatchEvent(
-      new CustomEvent<MarkdownCodemirrorChangeDetail>('df-markdown-codemirror-change', {
+      new CustomEvent<WrongMarkdownCodemirrorChangeDetail>('wrong-markdown-codemirror-change', {
         detail,
         bubbles: true,
         composed: true,
@@ -531,12 +531,12 @@ export class DfMarkdownCodemirror extends SignalWatcher(LitElement) {
   }
 
   private dispatchFocusEvent(hasFocus: boolean) {
-    const detail: MarkdownCodemirrorFocusDetail = {
+    const detail: WrongMarkdownCodemirrorFocusDetail = {
       id: this.editorId,
       hasFocus,
     };
     this.dispatchEvent(
-      new CustomEvent<MarkdownCodemirrorFocusDetail>('df-markdown-codemirror-focus', {
+      new CustomEvent<WrongMarkdownCodemirrorFocusDetail>('wrong-markdown-codemirror-focus', {
         detail,
         bubbles: true,
         composed: true,
@@ -569,6 +569,6 @@ export class DfMarkdownCodemirror extends SignalWatcher(LitElement) {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'df-markdown-codemirror': DfMarkdownCodemirror;
+    'wrong-markdown-codemirror': WrongMarkdownCodemirror;
   }
 }

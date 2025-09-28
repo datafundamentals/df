@@ -1,9 +1,9 @@
 import {computed, signal} from '@lit-labs/signals';
 import type {
-  MarkdownCodemirrorConfig,
-  MarkdownCodemirrorInitOptions,
-  MarkdownCodemirrorSelection,
-  MarkdownCodemirrorTheme,
+  WrongMarkdownCodemirrorConfig,
+  WrongMarkdownCodemirrorInitOptions,
+  WrongMarkdownCodemirrorSelection,
+  WrongMarkdownCodemirrorTheme,
 } from '@df/types';
 import {
   clampSelectionIndexes,
@@ -18,7 +18,7 @@ const DEFAULT_PLACEHOLDER = 'Start writing Markdown...';
 const editors = new Map<string, ReturnType<typeof createEditorSignals>>();
 const editorStates = new Map<string, ReturnType<typeof createComputedState>>();
 
-export function registerMarkdownEditor(options: MarkdownCodemirrorInitOptions): void {
+export function registerMarkdownEditor(options: WrongMarkdownCodemirrorInitOptions): void {
   const id = options.id || DEFAULT_ID;
   const editor = ensureEditor(id, options);
   if (options.initialValue !== undefined && editor.value.get() === '') {
@@ -53,7 +53,7 @@ export function setMarkdownPlaceholder(id = DEFAULT_ID, placeholder: string): vo
   editor.placeholder.set(placeholder);
 }
 
-export function setMarkdownTheme(id = DEFAULT_ID, theme: MarkdownCodemirrorTheme): void {
+export function setMarkdownTheme(id = DEFAULT_ID, theme: WrongMarkdownCodemirrorTheme): void {
   const editor = ensureEditor(id);
   editor.theme.set(theme);
 }
@@ -63,7 +63,7 @@ export function setMarkdownReadOnly(id = DEFAULT_ID, readOnly: boolean): void {
   editor.readOnly.set(readOnly);
 }
 
-export function setMarkdownSelection(id = DEFAULT_ID, selection: MarkdownCodemirrorSelection): void {
+export function setMarkdownSelection(id = DEFAULT_ID, selection: WrongMarkdownCodemirrorSelection): void {
   const editor = ensureEditor(id);
   const normalized = clampSelectionIndexes(
     selection.start,
@@ -94,7 +94,7 @@ export function resetMarkdownEditor(id = DEFAULT_ID): void {
   editor.showPreview.set(true);
 }
 
-function ensureEditor(id: string, options?: Partial<MarkdownCodemirrorInitOptions>) {
+function ensureEditor(id: string, options?: Partial<WrongMarkdownCodemirrorInitOptions>) {
   const existing = editors.get(id);
   if (existing) {
     return existing;
@@ -105,15 +105,15 @@ function ensureEditor(id: string, options?: Partial<MarkdownCodemirrorInitOption
   return editorSignals;
 }
 
-function createEditorSignals(id: string, options?: Partial<MarkdownCodemirrorInitOptions>) {
+function createEditorSignals(id: string, options?: Partial<WrongMarkdownCodemirrorInitOptions>) {
   return {
     id,
     value: signal(options?.initialValue ?? ''),
     placeholder: signal(options?.placeholder ?? DEFAULT_PLACEHOLDER),
-    theme: signal<MarkdownCodemirrorTheme>(options?.theme ?? 'light'),
+    theme: signal<WrongMarkdownCodemirrorTheme>(options?.theme ?? 'light'),
     readOnly: signal(options?.readOnly ?? false),
     hasFocus: signal(false),
-    selection: signal<MarkdownCodemirrorSelection>({start: 0, end: 0}),
+    selection: signal<WrongMarkdownCodemirrorSelection>({start: 0, end: 0}),
     showPreview: signal(options?.showPreview ?? true),
   };
 }
@@ -128,7 +128,7 @@ function ensureComputedState(id: string) {
 }
 
 function createComputedState(id: string) {
-  return computed<MarkdownCodemirrorConfig>(() => {
+  return computed<WrongMarkdownCodemirrorConfig>(() => {
     const editor = ensureEditor(id);
     const value = editor.value.get();
     return {
@@ -144,6 +144,6 @@ function createComputedState(id: string) {
       wordCount: countMarkdownWords(value),
       previewHtml: renderMarkdownToHtml(value),
       showPreview: editor.showPreview.get(),
-    } satisfies MarkdownCodemirrorConfig;
+    } satisfies WrongMarkdownCodemirrorConfig;
   });
 }

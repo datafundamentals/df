@@ -1,14 +1,14 @@
 import type {Meta, StoryObj} from '@storybook/web-components';
 import {html} from 'lit';
-import '@df/ui-lit/markdown-codemirror';
+import '@df/ui-lit';
 import {
   registerMarkdownEditor,
   resetMarkdownEditor,
   setMarkdownValue,
 } from '@df/state';
 import type {
-  MarkdownCodemirrorChangeDetail,
-  MarkdownCodemirrorFocusDetail,
+  WrongMarkdownCodemirrorChangeDetail,
+  WrongMarkdownCodemirrorFocusDetail,
 } from '@df/types';
 
 interface MarkdownEditorArgs {
@@ -19,13 +19,13 @@ interface MarkdownEditorArgs {
   readOnly: boolean;
   showPreview: boolean;
   initialValue: string;
-  onChange?: (detail: MarkdownCodemirrorChangeDetail) => void;
+  onChange?: (detail: WrongMarkdownCodemirrorChangeDetail) => void;
   onFocusChange?: (hasFocus: boolean) => void;
 }
 
 const meta: Meta<MarkdownEditorArgs> = {
-  title: 'Components/Markdown Codemirror',
-  component: 'df-markdown-codemirror',
+  title: 'Components/Wrong Markdown Codemirror',
+  component: 'wrong-markdown-codemirror',
   parameters: {
     layout: 'fullscreen',
   },
@@ -69,7 +69,7 @@ const renderMarkdownStory = (args: MarkdownEditorArgs) => {
   setMarkdownValue(args.editorId, args.initialValue);
 
   return html`
-    <df-markdown-codemirror
+    <wrong-markdown-codemirror
       .editorId=${args.editorId}
       .label=${args.label}
       .placeholder=${args.placeholder}
@@ -77,11 +77,11 @@ const renderMarkdownStory = (args: MarkdownEditorArgs) => {
       .readOnly=${args.readOnly}
       .showPreview=${args.showPreview}
       .initialValue=${args.initialValue}
-      @df-markdown-codemirror-change=${(event: CustomEvent<MarkdownCodemirrorChangeDetail>) =>
+      @wrong-markdown-codemirror-change=${(event: CustomEvent<WrongMarkdownCodemirrorChangeDetail>) =>
         args.onChange?.(event.detail)}
-      @df-markdown-codemirror-focus=${(event: CustomEvent<MarkdownCodemirrorFocusDetail>) =>
+      @wrong-markdown-codemirror-focus=${(event: CustomEvent<WrongMarkdownCodemirrorFocusDetail>) =>
         args.onFocusChange?.(event.detail.hasFocus)}
-    ></df-markdown-codemirror>
+    ></wrong-markdown-codemirror>
   `;
 };
 
