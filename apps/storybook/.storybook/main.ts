@@ -5,6 +5,9 @@ import type {StorybookConfig} from '@storybook/web-components-vite';
 const config: StorybookConfig = {
   stories: ['../stories/**/*.mdx', '../stories/**/*.stories.@(ts|tsx)'],
   addons: ['@storybook/addon-essentials', '@storybook/addon-interactions'],
+  staticDirs: [
+    fileURLToPath(new URL('../../../public', import.meta.url)),
+  ],
   framework: {
     name: '@storybook/web-components-vite',
     options: {},
