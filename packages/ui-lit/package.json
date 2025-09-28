@@ -20,7 +20,9 @@
     "./df-practice-widget": "./dist/df-practice-widget.js",
     "./df-practice-widget.js": "./dist/df-practice-widget.js",
     "./df-npm-info-widget": "./dist/df-npm-info-widget.js",
-    "./df-npm-info-widget.js": "./dist/df-npm-info-widget.js"
+    "./df-npm-info-widget.js": "./dist/df-npm-info-widget.js",
+    "./df-markdown-codemirror": "./dist/df-markdown-codemirror.js",
+    "./df-markdown-codemirror.js": "./dist/df-markdown-codemirror.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -30,7 +32,13 @@
     "@df/state": "workspace:*",
     "@lit-labs/signals": "^0.1.0",
     "@material/web": "^2.0.0",
-    "lit": "^3.3.1"
+    "lit": "^3.3.1",
+    "@codemirror/lang-markdown": "^6.3.2",
+    "@codemirror/state": "^6.5.1",
+    "@codemirror/view": "^6.36.2",
+    "@codemirror/commands": "^6.6.2",
+    "codemirror": "^6.0.1",
+    "marked": "^15.0.6"
   },
   "devDependencies": {
     "typescript": "^5.9.2"
