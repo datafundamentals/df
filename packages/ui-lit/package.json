@@ -13,6 +13,8 @@
     "./segmented-button.js": "./dist/segmented-button.js",
     "./upload-link": "./dist/upload-link.js",
     "./upload-link.js": "./dist/upload-link.js",
+    "./nu-awr-upload-link": "./dist/nu-awr-upload-link.js",
+    "./nu-awr-upload-link.js": "./dist/nu-awr-upload-link.js",
     "./markdown-codemirror": "./dist/markdown-codemirror.js",
     "./markdown-codemirror.js": "./dist/markdown-codemirror.js",
     "./df-practice-widget": "./dist/df-practice-widget.js",
