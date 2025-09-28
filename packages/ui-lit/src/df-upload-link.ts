@@ -1,28 +1,28 @@
-// src/nu-awr-upload-link.ts
+// src/df-upload-link.ts
 import { css, html, LitElement } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { fileToUpload, fileUploadProgress, uploadFileTask } from './nu-upload-store';
+import { fileToUpload, fileUploadProgress, uploadFileTask } from './df-upload-link-store';
 import '@material/web/progress/circular-progress.js';
 import '@material/web/textfield/outlined-text-field.js';
 import './segmented-button';
-import { isLoggedIn } from './nu-auth-store';
+import { isLoggedIn } from './df-upload-link-auth';
 
 import { SignalWatcher } from '@lit-labs/signals';
-import { ResourcePageType, UrlMediaType } from './nu-types';
+import { ResourcePageType, UrlMediaType } from './df-upload-link-types';
 
-@customElement('nu-uploaded-link')
-export class NuAwrUploadLink extends SignalWatcher(LitElement) {
+@customElement('df-upload-link')
+export class DfUploadLink extends SignalWatcher(LitElement) {
   @property() declare resourceLinkType: UrlMediaType;
   @property() declare resourcePageType: ResourcePageType;
   @property({ type: String }) declare linkUrl: string;
   @property({ type: Boolean }) declare imageValid: boolean;
-  @state() private declare showUrlContainer: boolean;
-  @state() private declare showUploader: boolean;
-  @state() private declare showContent: boolean;
-  @state() private declare showLinkInput: boolean;
-  @state() declare fileName: string;
-  @state() private declare generatedLink: string;
-  @state() public declare disabledOptions: string[];
+  @state() private showUrlContainer = false;
+  @state() private showUploader = false;
+  @state() private showContent = false;
+  @state() private showLinkInput = false;
+  @state() fileName = 'Select File to Upload';
+  @state() private generatedLink = '';
+  @state() public disabledOptions = ['Add', '0'];
 
   constructor() {
     super();
@@ -30,13 +30,6 @@ export class NuAwrUploadLink extends SignalWatcher(LitElement) {
     this.resourcePageType = 'void';
     this.linkUrl = '';
     this.imageValid = false;
-    this.showUrlContainer = false;
-    this.showUploader = false;
-    this.showContent = false;
-    this.showLinkInput = false;
-    this.fileName = 'Select File to Upload';
-    this.generatedLink = '';
-    this.disabledOptions = ['Add', '0'];
   }
   static override styles = css`
     :host {
@@ -232,5 +225,11 @@ export class NuAwrUploadLink extends SignalWatcher(LitElement) {
         </div>
       </div>
     `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'df-upload-link': DfUploadLink;
   }
 }

@@ -1,9 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/web-components';
 import {html} from 'lit';
-import '@df/ui-lit/nu-awr-upload-link';
-import type {ResourcePageType, UrlMediaType} from '@df/ui-lit/src/nu-types';
+import '@df/ui-lit/df-upload-link';
+import type {ResourcePageType, UrlMediaType} from '@df/ui-lit/src/df-upload-link-types';
 
-interface NuAwrUploadLinkStoryArgs {
+interface DfUploadLinkStoryArgs {
   resourceLinkType: UrlMediaType;
   resourcePageType: ResourcePageType;
   linkUrl: string;
@@ -12,16 +12,16 @@ interface NuAwrUploadLinkStoryArgs {
   onAllocate?: (event: CustomEvent) => void;
 }
 
-const meta: Meta<NuAwrUploadLinkStoryArgs> = {
-  title: 'Components/Nu AWR Upload Link',
-  component: 'nu-uploaded-link',
+const meta: Meta<DfUploadLinkStoryArgs> = {
+  title: 'Components/Df Upload Link',
+  component: 'df-upload-link',
   parameters: {
     layout: 'centered',
     docs: {
       description: {
         component: `
-The Nu AWR Upload Link component from OUT_OF_SCOPE, integrated into the ui-lit package.
-This is the original awr-upload-link component with minimal changes for compatibility.
+The Df Upload Link component - a fully functional upload and URL link component for handling various media types.
+This is the main upload-link component that replaces the previous implementation.
 
 ## Features
 - Resource-specific upload handling
@@ -79,18 +79,18 @@ In a real implementation, these would connect to actual backend services.
 
 export default meta;
 
-type Story = StoryObj<NuAwrUploadLinkStoryArgs>;
+type Story = StoryObj<DfUploadLinkStoryArgs>;
 
 export const Default: Story = {
   render: (args) => html`
-    <nu-uploaded-link
+    <df-upload-link
       .resourceLinkType=${args.resourceLinkType}
       .resourcePageType=${args.resourcePageType}
       .linkUrl=${args.linkUrl}
       .imageValid=${args.imageValid}
       @upload-link-gather-url=${(event: CustomEvent) => args.onGatherUrl?.(event)}
       @upload-link-allocate=${(event: CustomEvent) => args.onAllocate?.(event)}
-    ></nu-uploaded-link>
+    ></df-upload-link>
   `,
 };
 
@@ -100,18 +100,18 @@ export const ImageUpload: Story = {
     resourcePageType: 'practice',
   },
   render: (args) => html`
-    <nu-uploaded-link
+    <df-upload-link
       .resourceLinkType=${args.resourceLinkType}
       .resourcePageType=${args.resourcePageType}
       .linkUrl=${args.linkUrl}
       .imageValid=${args.imageValid}
       @upload-link-gather-url=${(event: CustomEvent) => args.onGatherUrl?.(event)}
       @upload-link-allocate=${(event: CustomEvent) => args.onAllocate?.(event)}
-    ></nu-uploaded-link>
+    ></df-upload-link>
     <script>
       // Directly set the component to show Upload mode
       setTimeout(() => {
-        const component = document.querySelector('nu-uploaded-link');
+        const component = document.querySelector('df-upload-link');
         if (component) {
           // Set upload mode state directly
           component.showContent = true;
@@ -138,18 +138,18 @@ export const VideoUpload: Story = {
     resourcePageType: 'project',
   },
   render: (args) => html`
-    <nu-uploaded-link
+    <df-upload-link
       .resourceLinkType=${args.resourceLinkType}
       .resourcePageType=${args.resourcePageType}
       .linkUrl=${args.linkUrl}
       .imageValid=${args.imageValid}
       @upload-link-gather-url=${(event: CustomEvent) => args.onGatherUrl?.(event)}
       @upload-link-allocate=${(event: CustomEvent) => args.onAllocate?.(event)}
-    ></nu-uploaded-link>
+    ></df-upload-link>
     <script>
       // Directly set the component to show URL input mode (like triggerLink)
       setTimeout(() => {
-        const component = document.querySelector('nu-uploaded-link');
+        const component = document.querySelector('df-upload-link');
         if (component) {
           // Set URL input mode state directly
           component.showUrlContainer = true;
@@ -176,18 +176,18 @@ export const DocumentUpload: Story = {
     resourcePageType: 'resource',
   },
   render: (args) => html`
-    <nu-uploaded-link
+    <df-upload-link
       .resourceLinkType=${args.resourceLinkType}
       .resourcePageType=${args.resourcePageType}
       .linkUrl=${args.linkUrl}
       .imageValid=${args.imageValid}
       @upload-link-gather-url=${(event: CustomEvent) => args.onGatherUrl?.(event)}
       @upload-link-allocate=${(event: CustomEvent) => args.onAllocate?.(event)}
-    ></nu-uploaded-link>
+    ></df-upload-link>
     <script>
       // Directly set the component to show Upload mode (like triggerUpload)
       setTimeout(() => {
-        const component = document.querySelector('nu-uploaded-link');
+        const component = document.querySelector('df-upload-link');
         if (component) {
           // Set upload mode state directly
           component.showContent = true;
@@ -228,7 +228,7 @@ export const Interactive: Story = {
   render: (args) => {
     return html`
       <div style="display: flex; flex-direction: column; gap: 20px; max-width: 600px;">
-        <nu-uploaded-link
+        <df-upload-link
           .resourceLinkType=${args.resourceLinkType}
           .resourcePageType=${args.resourcePageType}
           .linkUrl=${args.linkUrl}
@@ -260,7 +260,7 @@ export const Interactive: Story = {
               `;
             }
           }}
-        ></nu-uploaded-link>
+        ></df-upload-link>
 
         <div style="padding: 12px; border: 1px solid #ccc; border-radius: 8px; background: #f9f9f9;">
           <div id="gather-info" style="font-family: monospace; font-size: 12px;">
@@ -303,10 +303,10 @@ export const AllResourceTypes: Story = {
           <h3 style="margin: 0 0 12px 0; color: #374151; font-size: 14px; text-transform: capitalize;">
             ${type} Upload
           </h3>
-          <nu-uploaded-link
+          <df-upload-link
             .resourceLinkType=${type as UrlMediaType}
             resourcePageType="practice"
-          ></nu-uploaded-link>
+          ></df-upload-link>
         </div>
       `)}
     </div>
