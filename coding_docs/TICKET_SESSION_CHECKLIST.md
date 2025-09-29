@@ -1,12 +1,14 @@
-# Claude Session Checklist for Monorepo Management
+# Ticket Session Checklist for Monorepo Management
+
+Usage: `Ticket` is used in this document as you would also use pull request or story or github issue or jira task.
 
 ## Pre-Session Setup (Start Every Session)
 
 ### 1. Context Loading (MANDATORY)
-- [ ] Read `CLAUDE.md` if it exists in project root
-- [ ] Read `docs/CLAUDE_SESSION_CHECKLIST.md` (this file)
+- [ ] If claude, then read `CLAUDE.md` if it exists in project root
+- [ ] Read `coding_docs/TICKET_SESSION_CHECKLIST.md` (this file)
 - [ ] Read relevant session documentation from `docs/sessions/`
-- [ ] Check `docs/architecture.md` for system overview
+- [ ] Check `coding_docs/architecture.md` for system overview
 - [ ] Review `shared/` directory for available components/services
 
 ### 2. Environment Verification
@@ -24,7 +26,7 @@
 ## During Session (Active Development)
 
 ### 4. Documentation Standards
-- [ ] Use TodoWrite tool to track all tasks and progress
+- [ ] if claude Use TodoWrite tool to track all tasks and progress
 - [ ] Mark todos as completed immediately after finishing
 - [ ] Document architectural decisions in real-time
 - [ ] Update relevant files with implementation notes
@@ -61,11 +63,11 @@
 ## Pre-Exit Protocols (End Every Session)
 
 ### 8. Documentation Updates (MANDATORY)
-- [ ] **Update root `CLAUDE.md` with current monorepo status/priorities**
+- [ ] if claude **Update root `CLAUDE.md` with current monorepo status/priorities**
 - [ ] Update app-specific `CLAUDE.md` files if project-specific changes made
-- [ ] Create/update session-specific documentation in `docs/sessions/`
-- [ ] Update `docs/architecture.md` if architectural changes made
-- [ ] Document any new shared resources in `docs/shared-resources.md`
+- [ ] Create/update session-specific documentation in `coding_docs/sessions/`
+- [ ] Update `coding_docs/architecture.md` if architectural changes made
+- [ ] Document any new shared resources in `coding_docs/shared-resources.md`
 - [ ] Update project-specific README files
 
 ### 9. Code Finalization
@@ -75,7 +77,7 @@
 - [ ] Tag incomplete work clearly for next session
 
 ### 10. Session Handoff Preparation
-- [ ] Create next session context in `docs/sessions/next-session.md`
+- [ ] Create next session context in `coding_docs/sessions/next-session.md`
 - [ ] List immediate next priorities
 - [ ] Document any blockers or dependencies
 - [ ] Reference related shared resources
@@ -175,6 +177,6 @@
 - **App `/apps/{project}/CLAUDE.md`**: Project-specific implementation details
 
 **Shared Documentation:**
-- Conceptual docs (coding standards, testing strategies) belong in `/docs/`
+- Conceptual docs (coding standards, testing strategies) belong in `/coding_docs/`
 - Project-specific addendums stay in app directories
 - Avoid duplication between apps - consolidate shared concepts

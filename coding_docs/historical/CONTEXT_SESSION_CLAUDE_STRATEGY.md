@@ -37,7 +37,7 @@ workspace/
 │   ├── project-a/
 │   ├── project-b/
 │   └── project-c/
-└── docs/
+└── coding_docs/
     ├── architecture.md
     ├── session-guides/  # Claude Code session templates
     └── shared-resources.md

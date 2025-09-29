@@ -4,12 +4,40 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
-import {legacyPlugin} from '@web/dev-server-legacy';
 import {playwrightLauncher} from '@web/test-runner-playwright';
 
 const mode = process.env.MODE || 'dev';
 if (!['dev', 'prod'].includes(mode)) {
   throw new Error(`MODE must be "dev" or "prod", was "${mode}"`);
+}
+
+const plugins = [];
+try {
+  const {legacyPlugin} = await import('@web/dev-server-legacy');
+  plugins.push(
+    legacyPlugin({
+      polyfills: {
+        webcomponents: true,
+        custom: [
+          {
+            name: 'lit-polyfill-support',
+            path: 'node_modules/lit/polyfill-support.js',
+            test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || window.ShadyDOM && window.ShadyDOM.force",
+            module: false,
+          },
+        ],
+      },
+    })
+  );
+} catch (error) {
+  if (error && typeof error === 'object' && 'code' in error && error.code !== 'ERR_MODULE_NOT_FOUND') {
+    throw error;
+  }
+  if (process.env.DEBUG_WTR_LEGACY) {
+    console.info(
+      'Skipping legacy polyfills; install @web/dev-server-legacy to restore legacy browser coverage.'
+    );
+  }
 }
 
 // Uncomment for testing on Sauce Labs
@@ -87,6 +115,7 @@ try {
 // https://modern-web.dev/docs/test-runner/cli-and-configuration/
 export default {
   rootDir: '.',
+  hostname: '127.0.0.1',
   files: ['./dist/test/**/*_test.js'],
   nodeResolve: {exportConditions: mode === 'dev' ? ['development'] : []},
   preserveSymlinks: false,
@@ -98,23 +127,5 @@ export default {
       timeout: '60000',
     },
   },
-  plugins: [
-    // Detect browsers without modules (e.g. IE11) and transform to SystemJS
-    // (https://modern-web.dev/docs/dev-server/plugins/legacy/).
-    legacyPlugin({
-      polyfills: {
-        webcomponents: true,
-        // Inject lit's polyfill-support module into test files, which is required
-        // for interfacing with the webcomponents polyfills
-        custom: [
-          {
-            name: 'lit-polyfill-support',
-            path: 'node_modules/lit/polyfill-support.js',
-            test: "!('attachShadow' in Element.prototype) || !('getRootNode' in Element.prototype) || window.ShadyDOM && window.ShadyDOM.force",
-            module: false,
-          },
-        ],
-      },
-    }),
-  ],
+  plugins,
 };
