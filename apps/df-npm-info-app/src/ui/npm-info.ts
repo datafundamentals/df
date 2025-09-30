@@ -1,55 +1,77 @@
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { SignalWatcher } from '@lit-labs/signals';
-import { NpmInfo, NpmPackage, renderAsyncComputed } from '../stores/npm-info';
+import { npmInfoWidgetState, setPackageName, loadNpmPackageInfo } from '@df/state';
+import type { NpmInfoWidgetState } from '@df/types';
 import '@material/web/textfield/outlined-text-field.js';
 
 @customElement('npm-info')
 export class NpmInfoElement extends SignalWatcher(LitElement) {
-  // This object is built with signals, including an AsyncComputed that fetched
-  // from the npm registry
-  private _npmInfo = new NpmInfo();
-
   override render() {
+    const state = npmInfoWidgetState.get();
+
     return html`
       <div>
         <md-outlined-text-field
-          label="NPM Package Name" 
+          label="NPM Package Name"
           supporting-text="Enter a package name like lit, chalk, react, or vue"
-          .value=${this._npmInfo.packageName} 
-          @input=${this._onChange}>
+          .value=${state.packageName}
+          @input=${this._onChange}
+          @keydown=${this._onKeydown}>
         </md-outlined-text-field>
       </div>
       <header>
-        <h1>${this._npmInfo.packageName}</h1>
+        <h1>${state.packageName}</h1>
         ${logo}
       </header>
       <div>
-        <p>${this._npmInfo.info.status}</p>
-        ${renderAsyncComputed(this._npmInfo.info, {
-          initial: () =>
-            html`<span class="initial"> When does this ever actually display? Enter a package name to display its npm info </span>`,
-          pending: () => html`Loading npm info for <code>${this._npmInfo.packageName}</code>`,
-          complete: (pkg: NpmPackage) => html`
-            <h3>${pkg.description}</h3>
-            <h4>dist-tags:</h4>
-            <ul>
-              ${Object.keys(pkg['dist-tags']).map(
-                tag =>
-                  html` <li>
-                    <pre>${tag}: ${pkg['dist-tags'][tag]}</pre>
-                  </li>`,
-              )}
-            </ul>
-          `,
-          error: e => html`<span class="error"> Error: ${(e as Error).message} </span>`,
-        })}
+        <p>${state.status}</p>
+        ${this._renderState(state)}
       </div>
     `;
   }
 
+  private _renderState(state: NpmInfoWidgetState) {
+    switch (state.status) {
+      case 'idle':
+        return html`<span class="initial">Enter a package name to display its npm info</span>`;
+      case 'loading':
+        return html`Loading npm info for <code>${state.packageName}</code>`;
+      case 'ready':
+        if (state.packageData) {
+          const distTags = state.packageData['dist-tags'];
+          return html`
+            <h3>${state.packageData.description || 'No description available'}</h3>
+            ${distTags ? html`
+              <h4>dist-tags:</h4>
+              <ul>
+                ${Object.keys(distTags).map(
+                  tag =>
+                    html` <li>
+                      <pre>${tag}: ${distTags[tag as keyof typeof distTags]}</pre>
+                    </li>`,
+                )}
+              </ul>
+            ` : ''}
+          `;
+        }
+        return html`<span class="initial">No package data available</span>`;
+      case 'error':
+        return html`<span class="error">Error: ${state.errorMessage}</span>`;
+      default:
+        return html`<span class="initial">Enter a package name to display its npm info</span>`;
+    }
+  }
+
   private _onChange(e: Event) {
-    this._npmInfo.packageName = (e.target as any).value;
+    const value = (e.target as any).value;
+    setPackageName(value);
+  }
+
+  private _onKeydown(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      loadNpmPackageInfo();
+    }
   }
 
   static override styles = css`

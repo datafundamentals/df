@@ -4,8 +4,8 @@ Usage: `Ticket` is used in this document as you would also use pull request or s
 
 ## Pre-Session Setup (Start Every Session)
 
-### 1. Context Loading (MANDATORY)
-- [ ] If claude, then read `CLAUDE.md` if it exists in project root
+### 1. Context Loading (MANDATORY) - done
+- [ ] If claude, then read `coding_docs/claude/CLAUDE.md` if it exists
 - [ ] Read `coding_docs/TICKET_SESSION_CHECKLIST.md` (this file)
 - [ ] Read relevant session documentation from `docs/sessions/`
 - [ ] Check `coding_docs/architecture.md` for system overview
@@ -63,8 +63,8 @@ Usage: `Ticket` is used in this document as you would also use pull request or s
 ## Pre-Exit Protocols (End Every Session)
 
 ### 8. Documentation Updates (MANDATORY)
-- [ ] if claude **Update root `CLAUDE.md` with current monorepo status/priorities**
-- [ ] Update app-specific `CLAUDE.md` files if project-specific changes made
+- [ ] if claude **Update `coding_docs/claude/CLAUDE.md` with current monorepo status/priorities**
+- [ ] Update app-specific `coding_docs/claude/` files if project-specific changes made
 - [ ] Create/update session-specific documentation in `coding_docs/sessions/`
 - [ ] Update `coding_docs/architecture.md` if architectural changes made
 - [ ] Document any new shared resources in `coding_docs/shared-resources.md`
@@ -173,8 +173,8 @@ Usage: `Ticket` is used in this document as you would also use pull request or s
 ## Documentation Architecture Notes
 
 **CLAUDE.md Hierarchy:**
-- **Root `/CLAUDE.md`**: Monorepo overview, current state, shared context
-- **App `/apps/{project}/CLAUDE.md`**: Project-specific implementation details
+- **Main `/coding_docs/claude/CLAUDE.md`**: Monorepo overview, current state, shared context
+- **App `/apps/{project}/coding_docs/claude/`**: Project-specific implementation details
 
 **Shared Documentation:**
 - Conceptual docs (coding standards, testing strategies) belong in `/coding_docs/`

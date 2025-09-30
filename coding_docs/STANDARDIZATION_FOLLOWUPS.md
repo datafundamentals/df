@@ -9,7 +9,7 @@ This ticket produces the plan; the items below should be tracked as individual f
 - **Acceptance:** No duplicate NPM info components remain; Storybook and dev harness continue to work.
 
 ## 2. Refresh `apps/lit-starter` as canonical skeleton
-- **Goal:** Replace the stock Lit starter export with a minimal example that follows the signals-first architecture.
+- **Goal:** Refactor those portions of the stock Lit starter export with changes necessary to follow the signals-first architecture as outlined in /coding_docs/SHARED_WEB_COMPONENT_DEFAULTS.md, while maintaining as much of the lit starter structure as is reasonably practical.
 - **Scope:** Introduce a simple store in `src/stores/`, a matching presentation component, and at least one test or story demonstrating usage. Update README/docs to link back to the standards doc.
 - **Dependencies:** `coding_docs/SHARED_WEB_COMPONENT_DEFAULTS.md`, `coding_docs/CODING_STANDARDS_STYLES.md`.
 - **Acceptance:** New developers can clone the starter and see a working signals-based example without visiting other apps.
