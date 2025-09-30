@@ -1,6 +1,9 @@
 # LitElement TypeScript starter
 
-This project includes a sample component using LitElement with TypeScript.
+This workspace now treats `<my-app>` as the reference host component. It wires
+the shared `<my-element>` widget from `@df/ui-lit` into a signals-first store
+that lives under `@df/state`, demonstrating the monorepo patterns used across
+Data Fundamentals apps.
 
 This template is generated from the `lit-starter-ts` package in [the main Lit
 repo](https://github.com/lit/lit). Issues and PRs for this template should be

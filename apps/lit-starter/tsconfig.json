@@ -1,12 +1,17 @@
 {
   "extends": "../../ts.config.base.json",
   "compilerOptions": {
-    "target": "es2021",
-    "module": "es2020",
+    "target": "ES2021",
     "outDir": "dist",
     "rootDir": "src",
-    "types": ["mocha", "chai"]
+    "types": ["mocha", "chai"],
+    "skipLibCheck": true,
+    "composite": true
   },
   "include": ["src/**/*.ts"],
-  "exclude": []
+  "references": [
+    {"path": "../../packages/types"},
+    {"path": "../../packages/state"},
+    {"path": "../../packages/ui-lit"}
+  ]
 }

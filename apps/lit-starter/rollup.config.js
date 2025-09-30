@@ -3,6 +3,7 @@
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
+/* global console */
 
 import summary from 'rollup-plugin-summary';
 import terser from '@rollup/plugin-terser';
@@ -10,14 +11,14 @@ import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 
 export default {
-  input: 'dist/my-element.js',
+  input: 'dist/my-app.js',
   output: {
-    file: 'my-element.bundled.js',
+    file: 'my-app.bundled.js',
     format: 'esm',
   },
   onwarn(warning) {
     if (warning.code !== 'THIS_IS_UNDEFINED') {
-      console.error(`(!) ${warning.message}`);
+  console.error(`(!) ${warning.message}`);
     }
   },
   plugins: [

@@ -3,6 +3,7 @@
  * Copyright 2021 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
+/* global console */
 
 import {playwrightLauncher} from '@web/test-runner-playwright';
 
@@ -69,7 +70,7 @@ try {
 //   capabilities: {
 //     'browserstack.user': process.env.BROWSER_STACK_USERNAME,
 //     'browserstack.key': process.env.BROWSER_STACK_ACCESS_KEY,
-//     project: 'my-element',
+//     project: 'my-app',
 //     name: 'unit tests',
 //     build: `${process.env.GITHUB_REF ?? 'local'} build ${
 //       process.env.GITHUB_RUN_NUMBER ?? ''
