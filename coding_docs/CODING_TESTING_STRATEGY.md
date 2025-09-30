@@ -1,5 +1,7 @@
 # Complete Testing Strategy - Manual + Automated
 
+> **Current status:** The Playwright-oriented workflow described below represents the *target* testing approach. As of 2025-09-29 the repository does not ship Playwright configuration or automated suites. Use this document for planning, and consult `coding_docs/STANDARDIZATION_FOLLOWUPS.md` for the tickets that will bring the codebase in line with this strategy.
+
 ## Overview
 
 This project implements a **comprehensive testing strategy** that combines manual interactive testing with automated regression tests. This approach provides both developer confidence and automated safety nets for ongoing development.

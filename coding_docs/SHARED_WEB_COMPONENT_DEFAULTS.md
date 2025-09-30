@@ -2,7 +2,7 @@
 
 ## 1\. The Prime Directive: Design for Reusability
 
-Our single most important architectural goal is to make every component **shareable** across different applications within the monorepo. To achieve this, components must be designed as **presentation-only** ("dumb") components whenever reasonably practical.
+Our single most important architectural goal is to make every visual component **shareable** across different applications within the monorepo. To achieve this, components must be designed as **presentation-only** ("dumb") components whenever reasonably practical. The guidance in this document is grounded in the [Reactive State with Signals in Lit](https://justinfagnani.com/2024/10/09/reactive-state-with-signals-in-lit/) reference by Justin Fagnani; read it alongside this document whenever you are creating or refactoring signal-driven code.
 
 A presentation-only component is completely decoupled from its environment. It has three core characteristics:
 
@@ -12,13 +12,23 @@ A presentation-only component is completely decoupled from its environment. It h
 
 Its sole responsibility is to render a user interface based on the state it is given and to announce user interactions. By enforcing this strict separation of concerns, we ensure a component can be dropped into any context without modification, maximizing its value and reducing code duplication.
 
------
-
 ## 2\. Our Standard for Decoupling: A Signals-First Architecture
 
 To enforce and simplify the creation of presentation-only components, we use a **signals-first architecture** as the standard for managing all reactive state.
 
 This approach effectively decouples components from a rigid parent-child hierarchy, allowing them to connect directly to a shared source of truth. The following sections detail how to implement this pattern.
+
+### 2.0. Reference Implementations
+
+When in doubt, review one of the canonical examples before writing code:
+
+- **`apps/df-npm-info-app`** – End-to-end harness demonstrating side effects contained in `@df/state` and presentation logic in `@df/ui-lit` (source of truth for AsyncComputed usage inspired by the Fagnani article).
+- **`apps/df-practice-app`** – Example of computed signal orchestration, auto-refresh behaviour, and widget → store separation.
+- **`packages/ui-lit/df-npm-info-widget.ts`** & **`packages/ui-lit/df-practice-widget.ts`** – Current “golden” presentation components showing property patterns, event naming, and styling guidelines.
+
+Treat these references as living specifications. Any new component pattern should either follow them verbatim or document why it intentionally deviates.
+
+> **Why Storybook still feels "live":** Our Storybook stories (and the runtime harnesses under `apps/`) deliberately connect presentation components to the real `@df/state` stores. That wiring means UI events still trigger fetches or other side effects—handled *outside* the component—so the preview looks functional. The component remains presentation-only because it only renders signal values and dispatches events; side effects stay in the stores or harness code that listens to those events.
 
 ### 2.1. The Source of Truth: Centralized Signal State
 
@@ -245,3 +255,7 @@ Brief description of purpose and key features.
   },
 };
 ```
+
+## Follow-up Work
+
+Implementation tasks that align the codebase with this document are tracked in `coding_docs/STANDARDIZATION_FOLLOWUPS.md`. Review that roster when planning new tickets so work stays narrow in scope and cites the relevant standards sections. For recurring alignment checks, follow the process documented in `coding_docs/STANDARDIZATION_AUDIT_PLAYBOOK.md`.

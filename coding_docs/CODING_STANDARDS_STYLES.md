@@ -1,5 +1,7 @@
 # Coding Standards & Styles
 
+> **See also:** `coding_docs/SHARED_WEB_COMPONENT_DEFAULTS.md` is the canonical reference for signals-first component guidance. This document supplements it with broader stylistic expectations.
+
 ## Typescript
 
 - **Typescript Types** - As a general rule, use interface for defining the shape of objects and type for all other scenarios (unions, intersections, primitives, etc.). Shared, application-wide interfaces and types should be maintained in the src/types directory to enforce consistent data structures. For types that are only used within a single component, it is acceptable to define them within the component's file or in a co-located .types.ts file.
@@ -85,14 +87,6 @@ Events should follow the pattern: `df-[component-name]-[action-type]`
   ```
 - **Error handling** - Fire-and-forget operations should include error alerts for user feedback (acceptable anti-pattern for MVP)
 
-### Tag Processing & Type-ahead
-- **Comma-delimited parsing** - All tag-like metadata fields (tags, is_a, child_of, has_a) are parsed as comma-separated strings
-- **Firestore tag creation** - Each unique tag gets its own document in the `tags` collection
-- **Deduplication** - Check for existing tags before creation to avoid duplicates
-- **Type-ahead implementation** - Use AsyncComputed for Firestore tag searches with prefix matching
-- **Search caching** - Cache search results by prefix to improve performance and reduce Firestore calls
-- **Refresh mechanism** - Clear cache when new tags are saved using refresh trigger signals
-
 ## Authentication
 - **Component protection** - Use conditional rendering based on `isLoggedIn.get()` signal
 - **SignalWatcher pattern** - Components accessing auth state must extend `SignalWatcher(LitElement)`
@@ -171,7 +165,7 @@ Events should follow the pattern: `df-[component-name]-[action-type]`
 - **No Single Page Applications (SPAs)** - Use multi-page applications with 11ty static site generator
 - **Page-per-feature principle** - Each distinct feature gets its own HTML page and web component
 - **Natural navigation** - Leverage browser navigation, bookmarking, and back/forward buttons
-- **Component size limit** - If a component approaches 500+ lines, consider splitting into separate pages/components
+- **Component size limit** - Aim to keep individual components under 200 lines. If you approach ~300 lines, pause and evaluate whether the component has taken on multiple responsibilities and should be split into smaller pieces or delegated to separate pages/components.
 
 ### Development vs Production Structure  
 - **`dev/` folder** - Development and testing environment only
@@ -198,7 +192,3 @@ Events should follow the pattern: `df-[component-name]-[action-type]`
 - **Function documentation** - Include JSDoc comments for public functions, especially async operations
 - **Error context** - Log errors with sufficient context for debugging
 - **Status feedback** - Provide user feedback for long-running operations
-
----
-
-*This document reflects patterns established during RAG interface development and will evolve as the codebase grows.*
