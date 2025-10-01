@@ -13,11 +13,13 @@
     "build": "turbo run build",
     "lint": "turbo run lint",
     "test": "turbo run test",
+    "test:integration": "playwright test",
     "clean": "turbo run clean && pnpm -r exec rimraf node_modules dist .turbo"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
     "eslint": "^9.35.0",
+    "playwright": "1.55.1",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
     "turbo": "^2.5.6",

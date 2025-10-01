@@ -4,8 +4,7 @@ Usage: `Ticket` is used in this document as you would also use pull request or s
 
 ## Pre-Session Setup (Start Every Session)
 
-### 1. Context Loading (MANDATORY) - done
-- [ ] If claude, then read `coding_docs/claude/CLAUDE.md` if it exists
+### 1. Context Loading
 - [ ] Read `coding_docs/TICKET_SESSION_CHECKLIST.md` (this file)
 - [ ] Read relevant session documentation from `docs/sessions/`
 - [ ] Check `coding_docs/architecture.md` for system overview

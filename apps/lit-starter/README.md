@@ -5,6 +5,23 @@ the shared `<my-element>` widget from `@df/ui-lit` into a signals-first store
 that lives under `@df/state`, demonstrating the monorepo patterns used across
 Data Fundamentals apps.
 
+## Monorepo usage
+
+Inside the Data Fundamentals workspace we rely on `pnpm` workspaces. Run the
+component tests through Web Test Runner with:
+
+```bash
+pnpm --filter @lit/lit-starter-ts test
+```
+
+That command builds the project before executing both dev/prod Web Test Runner
+suites and the Playwright browser flow. To focus on the integration harness
+alone you can run:
+
+```bash
+pnpm --filter @lit/lit-starter-ts test:e2e
+```
+
 This template is generated from the `lit-starter-ts` package in [the main Lit
 repo](https://github.com/lit/lit). Issues and PRs for this template should be
 filed in that repo.

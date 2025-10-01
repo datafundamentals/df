@@ -2,13 +2,13 @@
 
 This ticket produces the plan; the items below should be tracked as individual follow-up tickets. Each entry includes the objective, scope, dependencies, and acceptance criteria so future work can reference the standards that motivated it.
 
-## 1. Consolidate NPM info patterns
+## 1. Consolidate NPM info patterns - done
 - **Goal:** Retire the legacy `AsyncComputed` demo inside `apps/df-npm-info-app/src/ui/npm-info.ts` so the app exposes a single canonical implementation driven by `@df/state`.
 - **Scope:** Remove the unused UI component, move any documentation-worthy snippets into `coding_docs/` if still valuable, and ensure `df-npm-info-app` imports only shared widgets.
 - **Dependencies:** `coding_docs/SHARED_WEB_COMPONENT_DEFAULTS.md` (signals guidance); this ticket.
 - **Acceptance:** No duplicate NPM info components remain; Storybook and dev harness continue to work.
 
-## 2. Refresh `apps/lit-starter` as canonical skeleton
+## 2. Refresh `apps/lit-starter` as canonical skeleton - done
 - **Goal:** Refactor those portions of the stock Lit starter export with changes necessary to follow the signals-first architecture as outlined in /coding_docs/SHARED_WEB_COMPONENT_DEFAULTS.md, while maintaining as much of the lit starter structure as is reasonably practical.
 - **Scope:** Introduce a simple store in `src/stores/`, a matching presentation component, and at least one test or story demonstrating usage. Update README/docs to link back to the standards doc.
 - **Dependencies:** `coding_docs/SHARED_WEB_COMPONENT_DEFAULTS.md`, `coding_docs/CODING_STANDARDS_STYLES.md`.

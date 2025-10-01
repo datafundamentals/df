@@ -12,6 +12,7 @@ export interface PracticeTask {
 }
 
 export interface PracticeWidgetState {
+  version: number;
   topic: PracticeTopic;
   tasks: PracticeTask[];
   status: PracticeWidgetStatus;
